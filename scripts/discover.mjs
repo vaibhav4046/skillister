@@ -104,3 +104,22 @@ for (const c of candidates) {
 }
 
 process.stdout.write(lines.join("\n"));
+
+// Machine-readable form for the site. Every entry here has been verified to
+// contain at least one SKILL.md, which full-text search alone cannot tell you:
+// searching "agent skills" returns LLM platforms and study guides whose READMEs
+// merely use the words.
+fs.writeFileSync(
+  path.join(ROOT, "registry", "candidates.json"),
+  JSON.stringify(
+    {
+      generated: new Date().toISOString(),
+      note: "Verified candidates: each was checked via the git tree API and contains at least one SKILL.md. Presence here is not an endorsement.",
+      minStars: MIN_STARS,
+      candidates,
+    },
+    null,
+    2,
+  ) + "\n",
+  "utf8",
+);

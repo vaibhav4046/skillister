@@ -57,33 +57,33 @@ export async function getRepos(repos) {
   return out;
 }
 
-/**
- * Live search for skill packs not yet in the registry. This is the "actively
- * investigating GitHub" half: the page shows what exists right now, not a list
- * frozen at build time.
- */
-export async function discover(known = new Set()) {
-  const queries = ["claude code skills", "agent skills"];
-  const seen = new Map();
+export async function getCandidates() {
+  return (await json(`${RAW}/registry/candidates.json`)) || { candidates: [], generated: null };
+}
 
-  for (const q of queries) {
-    const d = await json(`${API}/search/repositories?q=${encodeURIComponent(q)}&sort=stars&order=desc&per_page=30`, { headers: ghHeaders() });
-    for (const r of d?.items || []) {
-      if (known.has(r.full_name.toLowerCase())) continue;
-      if (r.stargazers_count < 150) continue;
-      if (seen.has(r.full_name)) continue;
-      seen.set(r.full_name, {
-        repo: r.full_name,
-        stars: r.stargazers_count,
-        forks: r.forks_count,
-        license: r.license?.spdx_id || "NONE",
-        pushedAt: r.pushed_at,
-        description: r.description || "",
-        url: r.html_url,
-      });
-    }
-  }
-  return [...seen.values()].sort((a, b) => b.stars - a.stars).slice(0, 40);
+/**
+ * Verified discovery.
+ *
+ * Full-text search alone is not enough: querying GitHub for "agent skills"
+ * returns LLM platforms, study guides and admin dashboards whose READMEs merely
+ * use the words. The only reliable signal is whether the repository actually
+ * contains SKILL.md files, and checking that costs one API call per repository.
+ *
+ * So the weekly workflow does it with an authenticated token and commits the
+ * verified result, and this reads that. Star counts are still refreshed live.
+ */
+export async function discover() {
+  const { candidates, generated } = await getCandidates();
+  const live = await getRepos(candidates.slice(0, 30).map((c) => c.repo));
+  return {
+    generated,
+    items: candidates.map((c) => ({
+      ...c,
+      url: `https://github.com/${c.repo}`,
+      stars: live[c.repo]?.stars ?? c.stars,
+      pushedAt: live[c.repo]?.pushedAt ?? null,
+    })),
+  };
 }
 
 export function ago(iso) {
