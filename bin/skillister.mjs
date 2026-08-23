@@ -15,11 +15,13 @@
 import fs from "node:fs";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
+import os from "node:os";
 import { execFileSync } from "node:child_process";
 
 import { build, find } from "../src/index.mjs";
 import { compile, route, render } from "../src/router.mjs";
 import { resolveRoots, detectHosts, skillisterHome, indexPath } from "../src/roots.mjs";
+import { auditPack, formatAudit } from "../src/audit.mjs";
 
 const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..");
 const read = (p) => JSON.parse(fs.readFileSync(p, "utf8"));
@@ -67,6 +69,21 @@ function fmt(sk) {
 
 function sh(cmd, args) {
   return execFileSync(cmd, args, { encoding: "utf8", stdio: ["ignore", "pipe", "pipe"] });
+}
+
+/**
+ * Live repo facts. Uses the gh CLI when present (authenticated, 5000 req/hr),
+ * falls back to the public API (60 req/hr), and returns {} rather than
+ * throwing when neither is available - an audit without stars is still a
+ * useful audit.
+ */
+function repoMeta(repo) {
+  try {
+    const raw = sh("gh", ["api", `repos/${repo}`, "--jq", "{stars:.stargazers_count,forks:.forks_count,issues:.open_issues_count,license:(.license.spdx_id // \"NONE\"),pushedAt:.pushed_at,description:.description}"]);
+    return JSON.parse(raw);
+  } catch {
+    return {};
+  }
 }
 
 /* ------------------------------------------------------------------ install */
@@ -241,6 +258,72 @@ switch (cmd) {
   case "install":
     installPack(rest[0]);
     break;
+  case "audit": {
+    // Clone shallow into a temp dir and measure the pack. Stars do not tell
+    // you whether the skills will load; this does.
+    const target = rest[0];
+    if (!target) {
+      console.error("usage: skillister audit <owner/repo | ./local/dir>");
+      process.exit(1);
+    }
+    let dir = target;
+    let meta = {};
+    let tmp = null;
+    if (!fs.existsSync(target)) {
+      tmp = fs.mkdtempSync(path.join(os.tmpdir(), "skillister-"));
+      dir = tmp;
+      process.stderr.write(`cloning ${target}...\n`);
+      try {
+        sh("git", ["clone", "--depth=1", "--quiet", `https://github.com/${target}.git`, dir]);
+      } catch (e) {
+        console.error(`clone failed: ${String(e.message).split("\n")[0]}`);
+        process.exit(1);
+      }
+      meta = repoMeta(target);
+    }
+    const result = auditPack(dir, meta);
+    console.log(formatAudit(target, result));
+    if (result.issues.length && rest.includes("--issues")) {
+      console.log(`\nissues:`);
+      for (const i of result.issues) console.log(`  - ${i}`);
+    } else if (result.issueCount) {
+      console.log(`\n  run with --issues to list all ${result.issueCount}`);
+    }
+    if (tmp) fs.rmSync(tmp, { recursive: true, force: true });
+    break;
+  }
+  case "bench": {
+    // Audit every registry pack and print a leaderboard. `--json` writes the
+    // machine-readable form the site and the workflow consume.
+    const { packs } = read(packsFile());
+    const rows = [];
+    for (const p of packs) {
+      const tmp = fs.mkdtempSync(path.join(os.tmpdir(), "skillister-"));
+      try {
+        process.stderr.write(`auditing ${p.repo}...\n`);
+        sh("git", ["clone", "--depth=1", "--quiet", `https://github.com/${p.repo}.git`, tmp]);
+        const meta = repoMeta(p.repo);
+        const r = auditPack(tmp, meta);
+        rows.push({ id: p.id, repo: p.repo, license: p.license, ...meta, score: r.score, verdict: r.verdict, skills: r.total, metrics: r.metrics, issueCount: r.issueCount });
+      } catch (e) {
+        rows.push({ id: p.id, repo: p.repo, error: String(e.message).split("\n")[0] });
+      } finally {
+        fs.rmSync(tmp, { recursive: true, force: true });
+      }
+    }
+    rows.sort((a, b) => (b.score || 0) - (a.score || 0));
+    if (rest.includes("--json")) {
+      console.log(JSON.stringify({ generated: new Date().toISOString(), packs: rows }, null, 2));
+    } else {
+      console.log(`\n${"pack".padEnd(22)} ${"score".padEnd(7)} ${"skills".padEnd(7)} ${"stars".padEnd(7)} verdict`);
+      console.log("-".repeat(72));
+      for (const r of rows) {
+        if (r.error) { console.log(`${r.id.padEnd(22)} error: ${r.error}`); continue; }
+        console.log(`${r.id.padEnd(22)} ${String(r.score).padEnd(7)} ${String(r.skills).padEnd(7)} ${String(r.stars ?? "?").padEnd(7)} ${r.verdict}`);
+      }
+    }
+    break;
+  }
   case "wrapper":
     if (rest[0] === "add") wrapperAdd(rest[1], rest[2], rest[3]);
     else console.log("usage: skillister wrapper add <id> <https-url> [ref]");
