@@ -3,7 +3,7 @@
 Almost everything here is JSON. You should not need to touch the engine.
 
 ```bash
-git clone https://github.com/vaibhav4046/skilldex && cd skilldex
+git clone https://github.com/vaibhav4046/skillister && cd skillister
 npm test
 ```
 

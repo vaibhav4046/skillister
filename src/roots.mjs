@@ -1,7 +1,7 @@
 /**
  * Where skills live, per host CLI.
  *
- * Skilldex is harness-agnostic: it detects every supported agent CLI present on
+ * Skillister is harness-agnostic: it detects every supported agent CLI present on
  * the machine and indexes all of them, so one index serves Claude Code, Codex,
  * Cursor, Gemini CLI, opencode, and a plain ./skills directory at once.
  */
@@ -73,11 +73,11 @@ export function resolveRoots(opts = {}) {
   return roots;
 }
 
-/** Where skilldex keeps its own state. Override with SKILLDEX_HOME. */
-export function skilldexHome() {
-  return process.env.SKILLDEX_HOME || path.join(HOME, ".skilldex");
+/** Where skillister keeps its own state. Override with SKILLISTER_HOME. */
+export function skillisterHome() {
+  return process.env.SKILLISTER_HOME || path.join(HOME, ".skillister");
 }
 
 export function indexPath() {
-  return path.join(skilldexHome(), "index.json");
+  return path.join(skillisterHome(), "index.json");
 }

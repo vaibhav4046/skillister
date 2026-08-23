@@ -203,7 +203,7 @@
     {
       "id": "orchestrate",
       "match": "\\b(orchestrate|use the right skills?|which skills?|leverage my (setup|skills|workflow)|full pipeline)\\b",
-      "suppress": "\\bskilldex\\b",
+      "suppress": "\\bskillister\\b",
       "skills": ["orchestrate"],
       "advice": "Look the skills up and sequence them, rather than guessing from memory.",
       "evals": {

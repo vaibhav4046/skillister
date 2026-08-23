@@ -24,7 +24,7 @@ jobs:
         run: node test/eval.mjs
       - name: CLI smoke test
         run: |
-          node bin/skilldex.mjs index
-          node bin/skilldex.mjs packs
-          node bin/skilldex.mjs route "the login page is broken"
-          node bin/skilldex.mjs doctor
+          node bin/skillister.mjs index
+          node bin/skillister.mjs packs
+          node bin/skillister.mjs route "the login page is broken"
+          node bin/skillister.mjs doctor

@@ -46,7 +46,7 @@ export function route(compiled, prompt, max = 2) {
 export function render(hits) {
   if (!hits.length) return "";
   const lines = hits.map((r) => `- ${r.skills.map((s) => `"${s}"`).join(" + ")} :: ${r.advice}`);
-  return ["SKILLDEX routes for this prompt:", ...lines].join("\n");
+  return ["SKILLISTER routes for this prompt:", ...lines].join("\n");
 }
 
 /**

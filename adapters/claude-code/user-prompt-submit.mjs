@@ -3,7 +3,7 @@
  * Claude Code UserPromptSubmit adapter.
  * Match-gated: emits nothing when no route fires, so it costs zero standing
  * tokens. Never blocks the prompt.
- * Disable with SKILLDEX=off.
+ * Disable with SKILLISTER=off.
  */
 import fs from "node:fs";
 import path from "node:path";
@@ -16,7 +16,7 @@ let data = "";
 process.stdin.on("data", (c) => (data += c));
 process.stdin.on("end", () => {
   try {
-    if (String(process.env.SKILLDEX || "").toLowerCase() === "off") process.exit(0);
+    if (String(process.env.SKILLISTER || "").toLowerCase() === "off") process.exit(0);
     const input = JSON.parse(data || "{}");
     const prompt = input.prompt || input.user_prompt || "";
     const { routes } = JSON.parse(fs.readFileSync(path.join(ROOT, "registry", "routes.json"), "utf8"));

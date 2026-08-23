@@ -183,8 +183,8 @@ export function score(skill, terms, sizes) {
 /**
  * The obvious first implementation: count query hits in the name and
  * description, weight the name higher, done. Kept so the ranking claim is
- * testable rather than asserted - `skilldex find --naive` runs this instead,
- * and `skilldex compare` shows both side by side.
+ * testable rather than asserted - `skillister find --naive` runs this instead,
+ * and `skillister compare` shows both side by side.
  *
  * It fails in one specific way. A long hyphenated name contains more of your
  * query by accident than a short precise name does on purpose, so a

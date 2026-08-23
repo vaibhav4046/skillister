@@ -30,7 +30,7 @@ jobs:
         run: |
           if [ ! -s candidates.md ]; then echo "no new candidates"; exit 0; fi
           branch="discover/$(date +%Y-%m-%d)"
-          git config user.name "skilldex-bot"
+          git config user.name "skillister-bot"
           git config user.email "bot@users.noreply.github.com"
           git checkout -b "$branch"
           git add candidates.md

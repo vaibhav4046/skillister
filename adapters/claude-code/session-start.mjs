@@ -20,15 +20,15 @@ try {
 
   const built = index ? Date.parse(index.built) || 0 : 0;
   if (!index || Date.now() - built > MAX_AGE_DAYS * 864e5) {
-    execFileSync(process.execPath, [path.join(ROOT, "bin", "skilldex.mjs"), "index"], { stdio: "ignore", timeout: 60000 });
+    execFileSync(process.execPath, [path.join(ROOT, "bin", "skillister.mjs"), "index"], { stdio: "ignore", timeout: 60000 });
     index = JSON.parse(fs.readFileSync(p, "utf8"));
   }
 
   if (index?.count) {
     process.stdout.write(
-      `SKILLDEX ARMED - ${index.count} skills indexed.\n` +
+      `SKILLISTER ARMED - ${index.count} skills indexed.\n` +
       `For non-trivial or multi-phase work, invoke the "orchestrate" skill: it looks skills up and sequences them.\n` +
-      `Never invent a skill name. Look it up: skilldex find <domain words>. Not in the index means not installed.`
+      `Never invent a skill name. Look it up: skillister find <domain words>. Not in the index means not installed.`
     );
   }
 } catch { /* never block the session */ }

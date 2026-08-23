@@ -1,7 +1,7 @@
 {
   "schema": 1,
   "updated": "2026-08-23",
-  "note": "Skilldex links to upstream packs, it does not vendor them. Every pack installs from its own repository under its own licence, so authors keep their attribution and their terms. `redistributable` records whether the licence would even permit a mirror; skilldex does not rely on it.",
+  "note": "Skillister links to upstream packs, it does not vendor them. Every pack installs from its own repository under its own licence, so authors keep their attribution and their terms. `redistributable` records whether the licence would even permit a mirror; skillister does not rely on it.",
   "packs": [
     {
       "id": "superpowers",

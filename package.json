@@ -1,10 +1,10 @@
 {
-  "name": "@vaibhav4046/skilldex",
+  "name": "skillister",
   "version": "0.1.0",
   "description": "Find, route, and install agent skills across any agent CLI. Skill discovery that still works at a thousand skills.",
   "type": "module",
   "bin": {
-    "skilldex": "bin/skilldex.mjs"
+    "skillister": "bin/skillister.mjs"
   },
   "engines": {
     "node": ">=18"
@@ -13,8 +13,8 @@
     "test": "node test/validate.mjs && node test/eval.mjs",
     "validate": "node test/validate.mjs",
     "eval": "node test/eval.mjs",
-    "index": "node bin/skilldex.mjs index",
-    "doctor": "node bin/skilldex.mjs doctor"
+    "index": "node bin/skillister.mjs index",
+    "doctor": "node bin/skillister.mjs doctor"
   },
   "files": [
     "bin",
@@ -38,13 +38,10 @@
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/vaibhav4046/skilldex.git"
+    "url": "git+https://github.com/vaibhav4046/skillister.git"
   },
-  "homepage": "https://github.com/vaibhav4046/skilldex#readme",
+  "homepage": "https://github.com/vaibhav4046/skillister#readme",
   "bugs": {
-    "url": "https://github.com/vaibhav4046/skilldex/issues"
-  },
-  "publishConfig": {
-    "access": "public"
+    "url": "https://github.com/vaibhav4046/skillister/issues"
   }
 }

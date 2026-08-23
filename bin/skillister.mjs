@@ -1,15 +1,15 @@
 #!/usr/bin/env node
 /**
- * skilldex - find, route, and install agent skills across any agent CLI.
+ * skillister - find, route, and install agent skills across any agent CLI.
  *
- *   skilldex index            build the skill index from every detected host
- *   skilldex find <query>     rank installed skills against a query
- *   skilldex route <prompt>   show which skills a prompt should trigger
- *   skilldex packs            list registry packs
- *   skilldex install <id>     install a pack from its own upstream repository
- *   skilldex init [host]      wire skilldex into a host CLI
- *   skilldex stats            index breakdown by collection
- *   skilldex doctor           check the install and report problems
+ *   skillister index            build the skill index from every detected host
+ *   skillister find <query>     rank installed skills against a query
+ *   skillister route <prompt>   show which skills a prompt should trigger
+ *   skillister packs            list registry packs
+ *   skillister install <id>     install a pack from its own upstream repository
+ *   skillister init [host]      wire skillister into a host CLI
+ *   skillister stats            index breakdown by collection
+ *   skillister doctor           check the install and report problems
  */
 
 import fs from "node:fs";
@@ -19,7 +19,7 @@ import { execFileSync } from "node:child_process";
 
 import { build, find } from "../src/index.mjs";
 import { compile, route, render } from "../src/router.mjs";
-import { resolveRoots, detectHosts, skilldexHome, indexPath } from "../src/roots.mjs";
+import { resolveRoots, detectHosts, skillisterHome, indexPath } from "../src/roots.mjs";
 
 const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..");
 const read = (p) => JSON.parse(fs.readFileSync(p, "utf8"));
@@ -55,7 +55,7 @@ function loadIndex({ rebuild = false } = {}) {
 function buildIndex() {
   const roots = resolveRoots();
   const index = build(roots, BUILTINS);
-  fs.mkdirSync(skilldexHome(), { recursive: true });
+  fs.mkdirSync(skillisterHome(), { recursive: true });
   fs.writeFileSync(indexPath(), JSON.stringify(index), "utf8");
   return index;
 }
@@ -75,7 +75,7 @@ function installPack(id) {
   const { packs } = read(packsFile());
   const pack = packs.find((p) => p.id === id || p.repo === id);
   if (!pack) {
-    console.error(`No pack "${id}". Run \`skilldex packs\` to list them.`);
+    console.error(`No pack "${id}". Run \`skillister packs\` to list them.`);
     process.exit(1);
   }
 
@@ -94,7 +94,7 @@ function installPack(id) {
   } else if (install.type === "claude-local-wrapper") {
     console.log(`\n  This repo needs the local-wrapper install path.`);
     if (install.why) console.log(`  why: ${install.why}`);
-    console.log(`\n  skilldex wrapper add ${pack.id} ${install.url} ${install.ref || "main"}`);
+    console.log(`\n  skillister wrapper add ${pack.id} ${install.url} ${install.ref || "main"}`);
   } else if (install.type === "git-clone") {
     console.log(`\n  git clone --depth=1 ${install.url} <your-skills-dir>/${pack.id}`);
   }
@@ -108,20 +108,20 @@ function installPack(id) {
  * marketplace with an explicit HTTPS url source sidesteps both.
  */
 function wrapperAdd(id, url, ref = "main") {
-  const dir = path.join(process.env.HOME || process.env.USERPROFILE, ".claude", "local-marketplaces", "skilldex");
+  const dir = path.join(process.env.HOME || process.env.USERPROFILE, ".claude", "local-marketplaces", "skillister");
   const file = path.join(dir, ".claude-plugin", "marketplace.json");
   fs.mkdirSync(path.dirname(file), { recursive: true });
 
-  let mp = { $schema: "https://anthropic.com/claude-code/marketplace.schema.json", name: "skilldex-wrappers", owner: { name: "skilldex" }, plugins: [] };
+  let mp = { $schema: "https://anthropic.com/claude-code/marketplace.schema.json", name: "skillister-wrappers", owner: { name: "skillister" }, plugins: [] };
   if (fs.existsSync(file)) mp = read(file);
 
   if (!mp.plugins.some((p) => p.name === id)) {
-    mp.plugins.push({ name: id, description: `Installed via skilldex from ${url}`, source: { source: "url", url, ref } });
+    mp.plugins.push({ name: id, description: `Installed via skillister from ${url}`, source: { source: "url", url, ref } });
     fs.writeFileSync(file, JSON.stringify(mp, null, 2), "utf8");
   }
 
   console.log(`wrapper marketplace: ${file}`);
-  console.log(`\nNow run:\n  claude plugin marketplace add ${dir}\n  claude plugin install ${id}@skilldex-wrappers`);
+  console.log(`\nNow run:\n  claude plugin marketplace add ${dir}\n  claude plugin install ${id}@skillister-wrappers`);
 }
 
 /* -------------------------------------------------------------------- init */
@@ -147,7 +147,7 @@ function init(host = "claude-code") {
       2,
     ),
   );
-  console.log(`\nThen: node ${path.join(ROOT, "bin", "skilldex.mjs")} index`);
+  console.log(`\nThen: node ${path.join(ROOT, "bin", "skillister.mjs")} index`);
 }
 
 /* ------------------------------------------------------------------ doctor */
@@ -171,7 +171,7 @@ function doctor() {
   console.log(`routed skills  : ${routed.size} (${missing.length} not installed)`);
   if (missing.length) {
     console.log(`\nRoutes point at skills you have not installed:\n  ${missing.join(", ")}`);
-    console.log(`Install the packs that provide them: skilldex packs`);
+    console.log(`Install the packs that provide them: skillister packs`);
   }
   const top = Object.entries(index.sizes).sort((a, b) => b[1] - a[1]).slice(0, 8);
   console.log(`\nlargest collections:`);
@@ -206,7 +206,7 @@ switch (cmd) {
     const ranked = find(index, q, 3);
     const col = (sk) => `${(sk.plugin ? `${sk.plugin}:${sk.name}` : sk.name).slice(0, 44)}`;
     console.log(`query: "${q}"\n`);
-    console.log(`  naive (substring count)                      skilldex (coverage + specificity prior)`);
+    console.log(`  naive (substring count)                      skillister (coverage + specificity prior)`);
     console.log(`  ${"-".repeat(44)}     ${"-".repeat(44)}`);
     for (let i = 0; i < 3; i++) {
       const l = naive[i] ? col(naive[i]) : "";
@@ -217,7 +217,7 @@ switch (cmd) {
     if (naive[0] && ranked[0] && naive[0].name !== ranked[0].name) {
       console.log(
         `\n  naive picked from "${naive[0].collection}" (${sizes[naive[0].collection]} skills), ` +
-          `skilldex picked from "${ranked[0].collection}" (${sizes[ranked[0].collection]} skills).`,
+          `skillister picked from "${ranked[0].collection}" (${sizes[ranked[0].collection]} skills).`,
       );
     }
     break;
@@ -243,7 +243,7 @@ switch (cmd) {
     break;
   case "wrapper":
     if (rest[0] === "add") wrapperAdd(rest[1], rest[2], rest[3]);
-    else console.log("usage: skilldex wrapper add <id> <https-url> [ref]");
+    else console.log("usage: skillister wrapper add <id> <https-url> [ref]");
     break;
   case "init":
     init(rest[0]);
