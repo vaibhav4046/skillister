@@ -16,7 +16,7 @@ export default async function Discover() {
         <div className="wrap">
           <span className="badge" style={{ marginBottom: 40 }}>
             <span className="dot" aria-hidden="true" />
-            Verified {generated ? ago(generated) : "not yet"} · stars live from the GitHub API
+            Verified {generated ? ago(generated) : "not yet"} · refreshed weekly by workflow
           </span>
 
           <h1 className="display" style={{ maxWidth: 880 }}>
@@ -84,7 +84,7 @@ export default async function Discover() {
                       <td className="num">{r.skills}</td>
                       <td className="num">{num(r.stars)}</td>
                       <td className="num">{r.license}</td>
-                      <td className="num">{r.pushedAt ? ago(r.pushedAt) : r.updated || "-"}</td>
+                      <td className="num">{r.updated || "-"}</td>
                     </tr>
                   ))}
                 </tbody>

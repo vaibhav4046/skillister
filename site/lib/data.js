@@ -69,20 +69,17 @@ export async function getCandidates() {
  * use the words. The only reliable signal is whether the repository actually
  * contains SKILL.md files, and checking that costs one API call per repository.
  *
- * So the weekly workflow does it with an authenticated token and commits the
- * verified result, and this reads that. Star counts are still refreshed live.
+ * Reads entirely from data the weekly workflow committed. That workflow runs
+ * inside GitHub Actions, which hands it an authenticated token for free, so
+ * this page needs no credential of its own and cannot be rate-limited. Forty
+ * live calls per render here would have exhausted the anonymous hourly budget
+ * on its own and taken the rest of the site down with it.
  */
 export async function discover() {
   const { candidates, generated } = await getCandidates();
-  const live = await getRepos(candidates.slice(0, 30).map((c) => c.repo));
   return {
     generated,
-    items: candidates.map((c) => ({
-      ...c,
-      url: `https://github.com/${c.repo}`,
-      stars: live[c.repo]?.stars ?? c.stars,
-      pushedAt: live[c.repo]?.pushedAt ?? null,
-    })),
+    items: candidates.map((c) => ({ ...c, url: `https://github.com/${c.repo}` })),
   };
 }
 

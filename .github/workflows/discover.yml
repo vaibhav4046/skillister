@@ -28,12 +28,14 @@ jobs:
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
-          if [ ! -s candidates.md ]; then echo "no new candidates"; exit 0; fi
+          if [ ! -s candidates.md ] && git diff --quiet registry/candidates.json; then
+            echo "nothing changed"; exit 0
+          fi
           branch="discover/$(date +%Y-%m-%d)"
           git config user.name "skillister-bot"
           git config user.email "bot@users.noreply.github.com"
           git checkout -b "$branch"
-          git add candidates.md
-          git commit -m "chore: weekly skill pack candidates"
+          git add candidates.md registry/candidates.json
+          git commit -m "chore: weekly candidate refresh (verified skill counts and stars)"
           git push -u origin "$branch"
           gh pr create --title "Weekly skill pack candidates" --body-file candidates.md
