@@ -190,9 +190,36 @@ switch (cmd) {
     break;
   }
   case "find": {
-    const hits = find(loadIndex(), rest.join(" "), 12);
+    const naive = rest.includes("--naive");
+    const q = rest.filter((a) => a !== "--naive").join(" ");
+    const hits = find(loadIndex(), q, 12, { naive });
     if (!hits.length) console.log("(no matching skill)");
     else hits.forEach((h) => console.log(fmt(h)));
+    break;
+  }
+  case "compare": {
+    // Side by side proof that the ranking does something. Same index, same
+    // query, only the scorer changes.
+    const index = loadIndex();
+    const q = rest.join(" ");
+    const naive = find(index, q, 3, { naive: true });
+    const ranked = find(index, q, 3);
+    const col = (sk) => `${(sk.plugin ? `${sk.plugin}:${sk.name}` : sk.name).slice(0, 44)}`;
+    console.log(`query: "${q}"\n`);
+    console.log(`  naive (substring count)                      skilldex (coverage + specificity prior)`);
+    console.log(`  ${"-".repeat(44)}     ${"-".repeat(44)}`);
+    for (let i = 0; i < 3; i++) {
+      const l = naive[i] ? col(naive[i]) : "";
+      const r = ranked[i] ? col(ranked[i]) : "";
+      console.log(`  ${l.padEnd(44)}     ${r}`);
+    }
+    const sizes = index.sizes;
+    if (naive[0] && ranked[0] && naive[0].name !== ranked[0].name) {
+      console.log(
+        `\n  naive picked from "${naive[0].collection}" (${sizes[naive[0].collection]} skills), ` +
+          `skilldex picked from "${ranked[0].collection}" (${sizes[ranked[0].collection]} skills).`,
+      );
+    }
     break;
   }
   case "route": {

@@ -180,11 +180,33 @@ export function score(skill, terms, sizes) {
   return s / (1 + Math.log10(n) / 2);
 }
 
-export function find(index, query, limit = 12) {
+/**
+ * The obvious first implementation: count query hits in the name and
+ * description, weight the name higher, done. Kept so the ranking claim is
+ * testable rather than asserted - `skilldex find --naive` runs this instead,
+ * and `skilldex compare` shows both side by side.
+ *
+ * It fails in one specific way. A long hyphenated name contains more of your
+ * query by accident than a short precise name does on purpose, so a
+ * thousand-skill dump wins every query it is entered into.
+ */
+export function scoreNaive(skill, terms) {
+  const name = skill.name.toLowerCase();
+  const desc = (skill.description || "").toLowerCase();
+  let s = 0;
+  for (const t of terms) {
+    if (name.includes(t)) s += 5;
+    if (desc.includes(t)) s += 1;
+  }
+  return s;
+}
+
+export function find(index, query, limit = 12, { naive = false } = {}) {
   const terms = tokenize(query);
   if (!terms.length) return [];
+  const scorer = naive ? (sk) => scoreNaive(sk, terms) : (sk) => score(sk, terms, index.sizes);
   return index.skills
-    .map((sk) => ({ sk, s: score(sk, terms, index.sizes) }))
+    .map((sk) => ({ sk, s: scorer(sk) }))
     .filter((r) => r.s > 0)
     .sort((a, b) => b.s - a.s || a.sk.name.length - b.sk.name.length)
     .slice(0, limit)

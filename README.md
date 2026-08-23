@@ -7,9 +7,9 @@ Skills are matched to your request by their description. That works at twenty sk
 Skilldex fixes discovery. It indexes every skill on your machine, ranks them against a real query, and maps task shapes to exact skill names so the right one actually runs.
 
 ```bash
-npx skilldex index
-npx skilldex find supply chain dependency risk
-npx skilldex route "the login page is broken"
+npx @vaibhav4046/skilldex index
+npx @vaibhav4046/skilldex find supply chain dependency risk
+npx @vaibhav4046/skilldex route "the login page is broken"
 ```
 
 ```
@@ -37,6 +37,37 @@ Two things it does that a skill list cannot:
 
 **Routes that cannot lie.** A route names exact skills. CI asserts every routed name exists in a real built index, so a route can never recommend a skill nobody has installed.
 
+### See it for yourself
+
+`skilldex compare` runs both scorers over the same index, so the claim is testable instead of asserted. Real output from an index of 1203 skills, where one installed pack contributes 753 of them:
+
+```
+$ skilldex compare open source a repo
+
+  naive (substring count)                    skilldex (coverage + specificity prior)
+  ---------------------------------------    ---------------------------------------
+  collecting-open-source-intelligence        open-sourcing
+  performing-open-source-intelligence-...    collecting-open-source-intelligence
+  open-sourcing                              performing-open-source-intelligence-...
+
+  naive picked from "Anthropic-Cybersecurity-Skills" (753 skills),
+  skilldex picked from "open-sourcing" (1 skill).
+```
+
+```
+$ skilldex compare security audit
+
+  naive (substring count)                    skilldex (coverage + specificity prior)
+  ---------------------------------------    ---------------------------------------
+  performing-security-headers-audit          audit-context-building
+  auditing-terraform-infrastructure-for-...  ponytail-audit
+  auditing-cloud-with-cis-benchmarks         performing-security-headers-audit
+```
+
+**Where it helps, and where it does not.** The gain shows up on queries built from common words, which is exactly where a large pack's keyword-dense names crowd out a short precise one. On queries containing a distinctive term the two agree, because there was never any ambiguity to resolve. Both scorers still miss on vague requests like `test my code`, which is what routes are for: shapes that come up constantly get an explicit route rather than a search.
+
+Run `skilldex find --naive <query>` against your own machine and judge it yourself.
+
 ## We do not host other people's skills
 
 Skilldex links to upstream packs. It does not copy them.
@@ -48,12 +79,12 @@ You get the same convenience without that: `skilldex install <pack>` prints the 
 ## Install
 
 ```bash
-npm install -g skilldex
+npm install -g @vaibhav4046/skilldex
 skilldex index
 skilldex doctor
 ```
 
-Or without installing anything: `npx skilldex@latest doctor`.
+Or without installing anything: `npx @vaibhav4046/skilldex@latest doctor`.
 
 ### Wire it into your agent
 
