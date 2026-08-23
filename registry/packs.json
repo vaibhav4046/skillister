@@ -1,0 +1,165 @@
+{
+  "schema": 1,
+  "updated": "2026-08-23",
+  "note": "Skilldex links to upstream packs, it does not vendor them. Every pack installs from its own repository under its own licence, so authors keep their attribution and their terms. `redistributable` records whether the licence would even permit a mirror; skilldex does not rely on it.",
+  "packs": [
+    {
+      "id": "superpowers",
+      "name": "Superpowers",
+      "repo": "obra/superpowers",
+      "license": "MIT",
+      "redistributable": true,
+      "tags": ["process", "planning", "debugging", "tdd", "verification"],
+      "summary": "Agentic skills framework and software development methodology. Process skills that set the method before any domain skill runs.",
+      "install": { "type": "claude-marketplace", "ref": "obra/superpowers-marketplace", "plugin": "superpowers" },
+      "recommended": [
+        "brainstorming",
+        "systematic-debugging",
+        "test-driven-development",
+        "verification-before-completion",
+        "writing-plans",
+        "dispatching-parallel-agents"
+      ]
+    },
+    {
+      "id": "addy-agent-skills",
+      "name": "Agent Skills (Addy Osmani)",
+      "repo": "addyosmani/agent-skills",
+      "license": "MIT",
+      "redistributable": true,
+      "tags": ["frontend", "performance", "web", "process", "shipping"],
+      "summary": "Production-grade engineering skills covering the full lifecycle: spec, plan, build, verify, review, ship. Strongest single pack for web work.",
+      "install": {
+        "type": "claude-local-wrapper",
+        "url": "https://github.com/addyosmani/agent-skills.git",
+        "ref": "main",
+        "why": "Its marketplace.json declares a `github` source, which Claude Code resolves over SSH. On a machine without a GitHub host key that fails with `Host key verification failed`. An explicit HTTPS url source avoids it."
+      },
+      "recommended": [
+        "frontend-ui-engineering",
+        "performance-optimization",
+        "browser-testing-with-devtools",
+        "api-and-interface-design",
+        "observability-and-instrumentation",
+        "spec-driven-development",
+        "shipping-and-launch"
+      ]
+    },
+    {
+      "id": "trailofbits",
+      "name": "Trail of Bits Security Skills",
+      "repo": "trailofbits/skills",
+      "license": "CC-BY-SA-4.0",
+      "redistributable": false,
+      "tags": ["security", "static-analysis", "python", "supply-chain", "testing"],
+      "summary": "Security research, vulnerability detection, and code-quality skills from Trail of Bits. Per-plugin install, so take only what applies.",
+      "install": { "type": "claude-marketplace", "ref": "trailofbits/skills", "plugin": "*" },
+      "recommended": [
+        "modern-python",
+        "static-analysis",
+        "differential-review",
+        "supply-chain-risk-auditor",
+        "property-based-testing",
+        "open-sourcing",
+        "audit-context-building",
+        "variant-analysis",
+        "fp-check",
+        "git-cleanup"
+      ],
+      "caution": "CC-BY-SA-4.0 is copyleft. Link to it, do not vendor it into a permissively licensed repository."
+    },
+    {
+      "id": "mattpocock",
+      "name": "Matt Pocock Engineering Skills",
+      "repo": "mattpocock/skills",
+      "license": "MIT",
+      "redistributable": true,
+      "tags": ["typescript", "process", "spec", "review", "architecture"],
+      "summary": "Engineering and productivity skills: grilling a plan until it holds, spec and ticket synthesis, deep-module design, diagnosis loops.",
+      "install": {
+        "type": "claude-local-wrapper",
+        "url": "https://github.com/mattpocock/skills.git",
+        "ref": "main",
+        "why": "Single-plugin repo with no .claude-plugin/marketplace.json, so `claude plugin marketplace add` rejects it."
+      },
+      "recommended": [
+        "grilling",
+        "diagnosing-bugs",
+        "to-spec",
+        "to-tickets",
+        "wayfinder",
+        "codebase-design",
+        "code-review",
+        "resolving-merge-conflicts",
+        "writing-for-agents",
+        "handoff"
+      ]
+    },
+    {
+      "id": "humanizer",
+      "name": "Humanizer",
+      "repo": "blader/humanizer",
+      "license": "MIT",
+      "redistributable": true,
+      "tags": ["writing", "editing"],
+      "summary": "Rewrites AI-sounding text so it reads naturally, without changing what it says.",
+      "install": { "type": "claude-marketplace", "ref": "blader/humanizer", "plugin": "humanizer" },
+      "recommended": ["humanizer"]
+    },
+    {
+      "id": "last30days",
+      "name": "Last 30 Days",
+      "repo": "mvanhorn/last30days-skill",
+      "license": "MIT",
+      "redistributable": true,
+      "tags": ["research", "trends"],
+      "summary": "Researches a topic across Reddit, X, YouTube and Hacker News, so answers about what is current do not come from a stale training cutoff.",
+      "install": { "type": "claude-marketplace", "ref": "mvanhorn/last30days-skill", "plugin": "last30days" },
+      "recommended": ["last30days"]
+    },
+    {
+      "id": "obsidian",
+      "name": "Obsidian Skills",
+      "repo": "kepano/obsidian-skills",
+      "license": "MIT",
+      "redistributable": true,
+      "tags": ["notes", "markdown", "obsidian"],
+      "summary": "Official Obsidian skills: the Obsidian CLI, Markdown conventions, Bases, JSON Canvas, and Defuddle.",
+      "install": { "type": "claude-marketplace", "ref": "kepano/obsidian-skills", "plugin": "obsidian" },
+      "recommended": ["obsidian-cli", "obsidian-markdown", "obsidian-bases", "defuddle"]
+    },
+    {
+      "id": "anthropic-skills",
+      "name": "Anthropic Agent Skills",
+      "repo": "anthropics/skills",
+      "license": "NONE",
+      "redistributable": false,
+      "tags": ["documents", "artifacts", "mcp", "reference"],
+      "summary": "Document processing (docx, pptx, xlsx, pdf), artifact building, MCP server authoring, and skill creation.",
+      "install": { "type": "claude-marketplace", "ref": "anthropics/skills", "plugin": "*" },
+      "caution": "No LICENSE file at the time of writing, which means all rights reserved. Install from source; do not mirror."
+    }
+  ],
+  "rejected": [
+    {
+      "repo": "sickn33/agentic-awesome-skills",
+      "skills": 6389,
+      "reason": "Catalogue-scale dump. Adding it swamps discovery for every other pack and buries the skills you actually want."
+    },
+    {
+      "repo": "alirezarezvani/claude-skills",
+      "skills": 801,
+      "reason": "Bulk mixed-language marketing, business and dev content of uneven quality. Not curated."
+    },
+    {
+      "repo": "K-Dense-AI/scientific-agent-skills",
+      "skills": 163,
+      "reason": "Excellent but narrow: bioinformatics, astronomy, quantum. Install it deliberately if you work in those fields, not by default."
+    },
+    {
+      "repo": "vercel-labs/skills",
+      "skills": 1,
+      "reason": "Not a skill pack. It is the `npx skills` installer tool, frequently miscatalogued as a collection."
+    }
+  ]
+}

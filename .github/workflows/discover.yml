@@ -1,0 +1,39 @@
+name: discover
+
+# Weekly sweep for trending skill repositories. It opens a pull request with
+# candidates; a human decides. Curation is the product, so nothing auto-merges.
+
+on:
+  schedule:
+    - cron: "0 6 * * 1"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+  pull-requests: write
+
+jobs:
+  discover:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - name: Find candidate packs
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: node scripts/discover.mjs > candidates.md
+      - name: Open pull request
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          if [ ! -s candidates.md ]; then echo "no new candidates"; exit 0; fi
+          branch="discover/$(date +%Y-%m-%d)"
+          git config user.name "skilldex-bot"
+          git config user.email "bot@users.noreply.github.com"
+          git checkout -b "$branch"
+          git add candidates.md
+          git commit -m "chore: weekly skill pack candidates"
+          git push -u origin "$branch"
+          gh pr create --title "Weekly skill pack candidates" --body-file candidates.md

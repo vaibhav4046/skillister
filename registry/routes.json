@@ -1,0 +1,215 @@
+{
+  "schema": 1,
+  "note": "Each route maps a task shape to exact skill names. `evals.should` prompts MUST fire the route; `evals.shouldNot` prompts must NOT. CI runs every one of them, and separately asserts that every name under `skills` exists in the built index, so a route can never recommend a skill that is not installed.",
+  "routes": [
+    {
+      "id": "debug",
+      "match": "\\b(debug|diagnose|broken|failing|fails|crash(es|ed|ing)?|regress(ion|ed)|not working|stack ?trace|throwing|traceback|flaky)\\b",
+      "suppress": "\\b(systematic-debugging|diagnosing-bugs)\\b",
+      "skills": ["systematic-debugging", "diagnosing-bugs"],
+      "advice": "Hypothesis loop, no guess-patching. Find the root cause before editing, and grep every caller of the function you are about to touch.",
+      "evals": {
+        "should": ["the login page is broken", "tests are flaky on CI", "this endpoint keeps throwing"],
+        "shouldNot": ["write me a haiku", "run systematic-debugging on this"]
+      }
+    },
+    {
+      "id": "plan",
+      "match": "\\b(plan|design|architect(ure)?|approach|how should (i|we)|best way to|trade-?offs?)\\b",
+      "suppress": "\\b(brainstorming|writing-plans)\\b",
+      "skills": ["brainstorming", "grilling", "writing-plans"],
+      "advice": "Brainstorm before plan mode, stress-test the plan, then write it down. Plan goal-backward from what must be true when this is done.",
+      "evals": {
+        "should": ["how should I structure the auth layer", "what is the best way to model this"],
+        "shouldNot": ["fix this typo", "use brainstorming for this"]
+      }
+    },
+    {
+      "id": "spec",
+      "match": "\\b(spec|prd|requirements?|user stor(y|ies)|tickets?|issues? for|break (this|it) down|backlog)\\b",
+      "suppress": "\\b(to-spec|to-tickets|wayfinder)\\b",
+      "skills": ["to-spec", "to-tickets", "wayfinder"],
+      "advice": "Synthesise the conversation into a spec, or into tracer-bullet tickets with explicit blocking edges. Scope larger than one agent session goes to wayfinder.",
+      "evals": {
+        "should": ["turn this into a spec", "break it down into tickets"],
+        "shouldNot": ["what time is it"]
+      }
+    },
+    {
+      "id": "review",
+      "match": "\\b(review|code ?review|pull request|before (i )?commit|ready to merge|audit (this|the) (code|change|diff))\\b",
+      "suppress": "\\b(code-review|differential-review)\\b",
+      "skills": ["code-review", "differential-review", "fp-check"],
+      "advice": "Review against both axes: does it follow the repo's standards, and does it match what the issue asked for. Security-sensitive diffs get differential-review, then fp-check to kill false positives before anything is reported.",
+      "evals": {
+        "should": ["review my changes before I commit", "audit this diff"],
+        "shouldNot": ["what does this acronym mean"]
+      }
+    },
+    {
+      "id": "tests",
+      "match": "\\b(tdd|test[- ]first|red[- ]green|write tests?|unit tests?|integration tests?|test coverage|add tests?)\\b",
+      "suppress": "\\b(test-driven-development|property-based-testing)\\b",
+      "skills": ["test-driven-development", "property-based-testing", "mutation-testing"],
+      "advice": "RED before GREEN. Once the suite is green, property-based and mutation testing find what example tests miss.",
+      "evals": {
+        "should": ["add unit tests for the parser", "I want to do this test-first"],
+        "shouldNot": ["deploy to production"]
+      }
+    },
+    {
+      "id": "deps",
+      "match": "\\b(dependenc(y|ies)|supply ?chain|npm audit|lock ?file|package\\.json|requirements\\.txt|pyproject|vulnerable package|outdated packages?)\\b",
+      "suppress": "\\bsupply-chain-risk-auditor\\b",
+      "skills": ["supply-chain-risk-auditor"],
+      "advice": "Version-matched advisories across the whole lockfile tree, plus abandoned and hijacked package detection.",
+      "evals": {
+        "should": ["check my package.json for vulnerabilities", "audit our dependencies"],
+        "shouldNot": ["rename this variable"]
+      }
+    },
+    {
+      "id": "open-source",
+      "match": "\\b(open[- ]sourc(e|ing)|make (this|the|it) (repo|repository|project) public|publish (the|this) repo|prepare for public release)\\b",
+      "suppress": "\\bopen-sourcing\\b",
+      "skills": ["open-sourcing"],
+      "advice": "Secrets-history hygiene, licence, and scrubbing before a repository goes public. Check git history, not just the working tree.",
+      "evals": {
+        "should": ["I want to make this repo public", "help me open source this project"],
+        "shouldNot": ["what is MIT licence"]
+      }
+    },
+    {
+      "id": "python",
+      "match": "\\b(new python project|python project|uv\\b|ruff|poetry|pyproject|virtualenv|pip install)\\b",
+      "suppress": "\\bmodern-python\\b",
+      "skills": ["modern-python"],
+      "advice": "Modern Python tooling: uv, ruff, ty. Use it when starting a project or migrating off pip or Poetry.",
+      "evals": {
+        "should": ["starting a new python project", "should we move to uv"],
+        "shouldNot": ["explain a python decorator"]
+      }
+    },
+    {
+      "id": "orient",
+      "match": "\\b(unfamiliar|new to (this|the) (code ?base|repo)|understand (this|the) (code ?base|repo|project)|what does this (repo|project|code ?base) do|onboard)\\b",
+      "suppress": "\\baudit-context-building\\b",
+      "skills": ["audit-context-building", "codebase-design"],
+      "advice": "Read the codebase function by function before hunting bugs in it, then map the modules.",
+      "evals": {
+        "should": ["help me understand this codebase", "I am new to this repo"],
+        "shouldNot": ["add a log line"]
+      }
+    },
+    {
+      "id": "branches",
+      "match": "\\b(stale branch(es)?|clean ?up branches|worktrees?|merged branches|prune branches)\\b",
+      "suppress": "\\bgit-cleanup\\b",
+      "skills": ["git-cleanup"],
+      "advice": "Categorises branches as merged, squash-merged, superseded, or active work before deleting anything.",
+      "evals": {
+        "should": ["clean up merged branches", "I have a lot of stale branches"],
+        "shouldNot": ["write a commit message"]
+      }
+    },
+    {
+      "id": "prose",
+      "match": "\\b(sounds? (like )?ai|ai[- ]sounding|too formal|robotic|humani[sz]e|make (it|this) sound (human|natural)|less ai)\\b",
+      "suppress": "\\bhumanizer\\b",
+      "skills": ["humanizer"],
+      "advice": "Strips the tells of generated text without changing the meaning.",
+      "evals": {
+        "should": ["this paragraph sounds like ai", "can you humanize this"],
+        "shouldNot": ["translate this to french"]
+      }
+    },
+    {
+      "id": "recent",
+      "match": "\\b(what'?s trending|trending|latest|trends? in|current state of|last (30|thirty) days|what people are saying)\\b",
+      "suppress": "\\blast30days\\b",
+      "skills": ["last30days"],
+      "advice": "A training cutoff is not the present. Sweep live sources before answering anything about what is current.",
+      "evals": {
+        "should": ["what is trending in agent tooling", "what is the current state of local LLMs"],
+        "shouldNot": ["what is a linked list"]
+      }
+    },
+    {
+      "id": "frontend",
+      "match": "\\b(css|tailwind|responsive|jsx|tsx|react|next\\.?js|accessib(le|ility)|a11y)\\b",
+      "suppress": "\\bfrontend-ui-engineering\\b",
+      "skills": ["frontend-ui-engineering", "browser-testing-with-devtools"],
+      "advice": "Build it, then verify it in a real browser rather than asserting it works.",
+      "evals": {
+        "should": ["fix the tailwind layout on mobile", "make this react component accessible"],
+        "shouldNot": ["optimise this sql query"]
+      }
+    },
+    {
+      "id": "web-perf",
+      "match": "\\b(core web vitals|lighthouse|bundle size|lcp|inp|cls\\b|page ?speed|render[- ]blocking|slow (page|site|load))\\b",
+      "suppress": "\\bperformance-optimization\\b",
+      "skills": ["performance-optimization", "observability-and-instrumentation"],
+      "advice": "Measure before optimising. Loading, runtime, and resource budgets, with instrumentation to prove the change landed.",
+      "evals": {
+        "should": ["our lighthouse score dropped", "the bundle size is too big"],
+        "shouldNot": ["rename this css class"]
+      }
+    },
+    {
+      "id": "refactor",
+      "match": "\\b(refactor|tech ?debt|restructure|extract (a )?(module|helper)|deep module|coupl(ed|ing)|god (class|file))\\b",
+      "suppress": "\\bcodebase-design\\b",
+      "skills": ["codebase-design", "improve-codebase-architecture"],
+      "advice": "Deep-module vocabulary first, so the refactor has a target shape instead of just moving code around.",
+      "evals": {
+        "should": ["this file is a god class", "we need to pay down tech debt"],
+        "shouldNot": ["add a comment here"]
+      }
+    },
+    {
+      "id": "handoff",
+      "match": "\\b(hand ?off|context is (full|running out)|running out of context|pick this up later|continue (this )?(tomorrow|later))\\b",
+      "suppress": "\\bclaude-handoff\\b",
+      "skills": ["handoff"],
+      "advice": "Compact the conversation into a document another agent can resume from cold.",
+      "evals": {
+        "should": ["I am running out of context", "write a handoff for this"],
+        "shouldNot": ["what is the weather"]
+      }
+    },
+    {
+      "id": "authoring",
+      "match": "\\b(write a skill|create a skill|new skill|skill\\.md|agents\\.md|subagent (definition|prompt))\\b",
+      "suppress": "\\bwriting-skills\\b",
+      "skills": ["writing-skills", "writing-for-agents"],
+      "advice": "Documents written for agents follow different rules than documents written for people.",
+      "evals": {
+        "should": ["help me write a skill", "I need to update AGENTS.md"],
+        "shouldNot": ["what is markdown"]
+      }
+    },
+    {
+      "id": "verify",
+      "match": "\\b(is (it|this) done|verify|make sure it works|confirm (it|this) works|are we done)\\b",
+      "suppress": "\\bverification-before-completion\\b",
+      "skills": ["verification-before-completion"],
+      "advice": "Done means exercised end to end with real output shown. Type-checking is not verification.",
+      "evals": {
+        "should": ["are we done here", "make sure it works"],
+        "shouldNot": ["start a new feature"]
+      }
+    },
+    {
+      "id": "orchestrate",
+      "match": "\\b(orchestrate|use the right skills?|which skills?|leverage my (setup|skills|workflow)|full pipeline)\\b",
+      "suppress": "\\bskilldex\\b",
+      "skills": ["orchestrate"],
+      "advice": "Look the skills up and sequence them, rather than guessing from memory.",
+      "evals": {
+        "should": ["which skills should I use here", "orchestrate this for me"],
+        "shouldNot": ["print hello world"]
+      }
+    }
+  ]
+}

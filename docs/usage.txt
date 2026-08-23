@@ -1,0 +1,28 @@
+skilldex - find, route, and install agent skills across any agent CLI
+
+USAGE
+  skilldex <command> [args]
+
+COMMANDS
+  index                 Build the skill index from every detected host CLI
+  find <query>          Rank installed skills against a query
+  route <prompt>        Show which skills a prompt should trigger
+  packs                 List registry packs (and what was deliberately left out)
+  install <pack-id>     Print the install path for a pack, from its own upstream repo
+  wrapper add <id> <url> [ref]
+                        Register a repo that Claude Code cannot add directly
+  init [host]           Wire skilldex into a host CLI (default: claude-code)
+  stats                 Index breakdown by collection
+  doctor                Check the install and report problems
+
+EXAMPLES
+  skilldex index
+  skilldex find supply chain dependency risk
+  skilldex route "the login page is broken"
+  skilldex install trailofbits
+  skilldex doctor
+
+ENVIRONMENT
+  SKILLDEX_HOME         Where the index lives (default: ~/.skilldex)
+
+The index is disk truth. If a skill is not in it, it is not installed.
