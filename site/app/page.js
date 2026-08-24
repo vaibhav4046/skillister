@@ -1,6 +1,6 @@
 import { getPacks, getRoutes, getBenchmarks, ago, num, REVALIDATE } from "../lib/data";
 
-export const revalidate = 1800;
+export const revalidate = 60;
 
 function Bar({ value }) {
   return (
@@ -49,7 +49,7 @@ export default async function Home({ searchParams }) {
         <div className="wrap">
           <span className="badge" style={{ marginBottom: 40 }}>
             <span className="dot" aria-hidden="true" />
-            Live · {packs.length} packs tracked · refreshed every {Math.round(REVALIDATE / 60)} min
+            Live · {packs.length} packs tracked · refreshed every {REVALIDATE}s from the registry
           </span>
 
           <h1 className="display" style={{ maxWidth: 940 }}>

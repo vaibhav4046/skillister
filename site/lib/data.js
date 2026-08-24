@@ -11,7 +11,10 @@
 const RAW = "https://raw.githubusercontent.com/vaibhav4046/skillister/main";
 const API = "https://api.github.com";
 
-export const REVALIDATE = 1800; // 30 minutes
+// One upstream fetch a minute at most, so a merged registry change is visible
+// almost immediately. Vercel's data cache survives redeploys, so a long TTL
+// here means a pushed change stays invisible even after a forced deploy.
+export const REVALIDATE = 60;
 
 function ghHeaders() {
   const h = { accept: "application/vnd.github+json", "user-agent": "skillister-site" };
@@ -19,9 +22,19 @@ function ghHeaders() {
   return h;
 }
 
-async function json(url, opts = {}) {
+/**
+ * Registry reads bypass the framework data cache deliberately.
+ *
+ * Vercel's data cache survives redeployments, so a cached registry entry keeps
+ * serving after a merge even through a forced deploy - the site would claim to
+ * be live while showing last week's packs. These files are a few kilobytes from
+ * a CDN, so fetching them per render is cheap and makes "live" literally true.
+ *
+ * GitHub API calls keep the cache: they are rate-limited and far less critical.
+ */
+async function json(url, { fresh = false, ...opts } = {}) {
   try {
-    const res = await fetch(url, { ...opts, next: { revalidate: REVALIDATE } });
+    const res = await fetch(url, fresh ? { ...opts, cache: "no-store" } : { ...opts, next: { revalidate: REVALIDATE } });
     if (!res.ok) return null;
     return await res.json();
   } catch {
@@ -30,15 +43,15 @@ async function json(url, opts = {}) {
 }
 
 export async function getPacks() {
-  return (await json(`${RAW}/registry/packs.json`)) || { packs: [], rejected: [] };
+  return (await json(`${RAW}/registry/packs.json`, { fresh: true })) || { packs: [], rejected: [] };
 }
 
 export async function getRoutes() {
-  return (await json(`${RAW}/registry/routes.json`)) || { routes: [] };
+  return (await json(`${RAW}/registry/routes.json`, { fresh: true })) || { routes: [] };
 }
 
 export async function getBenchmarks() {
-  return (await json(`${RAW}/registry/benchmarks.json`)) || { packs: [], generated: null };
+  return (await json(`${RAW}/registry/benchmarks.json`, { fresh: true })) || { packs: [], generated: null };
 }
 
 /** Live repo facts for one pack. Null when rate-limited, never throws. */
@@ -58,7 +71,7 @@ export async function getRepos(repos) {
 }
 
 export async function getCandidates() {
-  return (await json(`${RAW}/registry/candidates.json`)) || { candidates: [], generated: null };
+  return (await json(`${RAW}/registry/candidates.json`, { fresh: true })) || { candidates: [], generated: null };
 }
 
 /**

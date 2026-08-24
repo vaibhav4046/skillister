@@ -1,6 +1,6 @@
 import { discover, ago, num } from "../../lib/data";
 
-export const revalidate = 1800;
+export const revalidate = 60;
 
 export const metadata = {
   title: "Discover — Skillister",
