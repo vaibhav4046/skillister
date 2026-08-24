@@ -6,7 +6,9 @@ name: refresh
 #  - re-scans GitHub for packs that are not listed yet, verifying each really
 #    ships SKILL.md files rather than merely mentioning skills in its README
 #
-# Opens a pull request. Nothing auto-merges: curation is the product, and an
+# Measurements are facts, so fresh scores commit straight to main and the site
+# is never stale. Promoting or demoting a pack is a judgement call, so drift is
+# raised as an issue for a human instead. Curation is the product; an
 # auto-merged firehose would recreate the problem this repository argues against.
 
 on:
@@ -16,7 +18,7 @@ on:
 
 permissions:
   contents: write
-  pull-requests: write
+  issues: write
 
 jobs:
   refresh:
@@ -48,17 +50,29 @@ jobs:
       - name: Verify the registry still passes
         run: node test/validate.mjs && node test/eval.mjs
 
-      - name: Open pull request
+      - name: Commit refreshed measurements
+        run: |
+          if git diff --quiet registry/; then echo "scores unchanged"; exit 0; fi
+          git config user.name "skillister-bot"
+          git config user.email "bot@users.noreply.github.com"
+          git add registry/
+          git commit -m "chore: daily registry refresh (scores, candidates)"
+          git push origin HEAD:main
+
+      - name: Raise an issue if the registry should change
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
-          if git diff --quiet registry/; then echo "nothing changed"; exit 0; fi
-          branch="refresh/$(date +%Y-%m-%d)"
-          git fetch origin "$branch" 2>/dev/null && git branch -D "$branch" 2>/dev/null || true
-          git config user.name "skillister-bot"
-          git config user.email "bot@users.noreply.github.com"
-          git checkout -b "$branch"
-          git add registry/ candidates.md
-          git commit -m "chore: daily registry refresh (scores, candidates, drift)"
-          git push -u origin "$branch"
-          gh pr create --title "Registry refresh $(date +%Y-%m-%d)" --body-file candidates.md
+          # Only the drift section matters here: it names packs that fell below
+          # the bar and unlisted packs that cleared it. Both are judgement calls,
+          # so they go to a human rather than being applied automatically.
+          if ! grep -q "below the bar\|clear the bar" candidates.md; then
+            echo "no drift to report"; exit 0
+          fi
+          title="Registry drift $(date +%Y-%m-%d)"
+          existing=$(gh issue list --state open --search "Registry drift in:title" --json number --jq '.[0].number // empty')
+          if [ -n "$existing" ]; then
+            gh issue comment "$existing" --body-file candidates.md
+          else
+            gh issue create --title "$title" --body-file candidates.md --label "registry"
+          fi
