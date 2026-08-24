@@ -17,6 +17,10 @@
   --font-mono: "JetBrains Mono", ui-monospace, SFMono-Regular, Menlo, monospace;
 
   --page: 1200px;
+
+  /* Without this the browser paints native scrollbars and controls from its
+     light palette, which is what put a white track on a black page. */
+  color-scheme: dark;
 }
 
 *,
@@ -383,4 +387,44 @@ footer {
   gap: 16px;
   flex-wrap: wrap;
   align-items: center;
+}
+
+
+/* ------------------------------------------------------------- scrollbars */
+
+* {
+  scrollbar-width: thin;
+  scrollbar-color: var(--iron) transparent;
+}
+
+*::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+*::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+*::-webkit-scrollbar-thumb {
+  background: var(--graphite);
+  border-radius: 99px;
+}
+
+*::-webkit-scrollbar-thumb:hover {
+  background: var(--iron);
+}
+
+*::-webkit-scrollbar-corner {
+  background: transparent;
+}
+
+/* The install column is long enough to force horizontal scroll on its own.
+   Truncate it in the cell and keep the full command in the title attribute,
+   so the table fits a normal viewport without scrolling at all. */
+.cmd-cell {
+  font-family: var(--font-mono);
+  font-size: 12px;
+  color: var(--smoke);
+  white-space: nowrap;
 }

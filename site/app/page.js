@@ -10,11 +10,12 @@ function Bar({ value }) {
   );
 }
 
+/**
+ * The short canonical command. `skillister install <id>` prints the real
+ * upstream steps, including the platform quirks, so the table does not need to
+ * carry a hundred-character git URL that forces it to scroll.
+ */
 function installCmd(p) {
-  const i = p.install || {};
-  if (i.type === "claude-marketplace") return `claude plugin marketplace add ${i.ref}`;
-  if (i.type === "claude-local-wrapper") return `skillister wrapper add ${p.id} ${i.url}`;
-  if (i.type === "git-clone") return `git clone --depth=1 ${i.url}`;
   return `skillister install ${p.id}`;
 }
 
@@ -110,7 +111,7 @@ export default async function Home({ searchParams }) {
           <p className="body" style={{ maxWidth: 640, marginTop: 16 }}>
             A pack is listed only at {policy?.minScore ?? 85} or above. Anything below stays listed
             only with a written exception, and validation fails without one. Scores regenerate every
-            week, so a pack that rots falls off the bar on its own rather than coasting on its stars.
+            day, so a pack that rots falls off the bar on its own rather than coasting on its stars.
           </p>
 
           <div style={{ marginTop: 32, display: "flex", flexWrap: "wrap", gap: 0 }}>
@@ -163,7 +164,9 @@ export default async function Home({ searchParams }) {
                       {p.caution && <div className="tag" style={{ marginTop: 6 }}>caution</div>}
                       {p.exception && <div className="tag" style={{ marginTop: 6 }}>exception</div>}
                     </td>
-                    <td className="num" style={{ whiteSpace: "nowrap" }}>{installCmd(p)}</td>
+                    <td>
+                      <code className="cmd-cell">{installCmd(p)}</code>
+                    </td>
                   </tr>
                 ))}
               </tbody>
@@ -172,7 +175,7 @@ export default async function Home({ searchParams }) {
 
           <p className="meta" style={{ marginTop: 16, textTransform: "none" }}>
             Scores and stars generated {bench.generated ? ago(bench.generated) : "not yet"},
-            refreshed weekly by workflow · reproduce any row with{" "}
+            refreshed daily by workflow · reproduce any row with{" "}
             <span className="chalk">skillister audit &lt;owner/repo&gt;</span>
           </p>
         </div>

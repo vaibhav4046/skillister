@@ -1,6 +1,6 @@
 name: refresh
 
-# Keeps the registry honest without anyone remembering to.
+# Runs daily. Keeps the registry honest without anyone remembering to.
 #
 #  - re-audits every listed pack, so a pack that rots loses its score in public
 #  - re-scans GitHub for packs that are not listed yet, verifying each really
@@ -11,7 +11,7 @@ name: refresh
 
 on:
   schedule:
-    - cron: "0 6 * * 1"
+    - cron: "0 6 * * *"
   workflow_dispatch:
 
 permissions:
@@ -54,10 +54,11 @@ jobs:
         run: |
           if git diff --quiet registry/; then echo "nothing changed"; exit 0; fi
           branch="refresh/$(date +%Y-%m-%d)"
+          git fetch origin "$branch" 2>/dev/null && git branch -D "$branch" 2>/dev/null || true
           git config user.name "skillister-bot"
           git config user.email "bot@users.noreply.github.com"
           git checkout -b "$branch"
           git add registry/ candidates.md
-          git commit -m "chore: weekly registry refresh (scores, candidates, drift)"
+          git commit -m "chore: daily registry refresh (scores, candidates, drift)"
           git push -u origin "$branch"
-          gh pr create --title "Weekly registry refresh" --body-file candidates.md
+          gh pr create --title "Registry refresh $(date +%Y-%m-%d)" --body-file candidates.md
