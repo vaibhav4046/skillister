@@ -32,6 +32,17 @@ const packs = read(path.join(ROOT, "registry", "packs.json"));
 check(packs.schema === 1, "schema version is 1");
 check(Array.isArray(packs.packs) && packs.packs.length > 0, "has at least one pack");
 
+const minScore = packs.policy?.minScore ?? 85;
+check(typeof minScore === "number", "policy declares a numeric minScore");
+let benchById = {};
+try {
+  benchById = Object.fromEntries(
+    JSON.parse(fs.readFileSync(path.join(ROOT, "registry", "benchmarks.json"), "utf8")).packs.map((b) => [b.id, b]),
+  );
+} catch {
+  /* benchmarks are optional locally; the refresh workflow regenerates them */
+}
+
 const seenIds = new Set();
 const REPO_RE = /^[A-Za-z0-9_.-]+\/[A-Za-z0-9_.-]+$/;
 const INSTALL_TYPES = new Set(["claude-marketplace", "claude-local-wrapper", "git-clone"]);
@@ -54,6 +65,12 @@ for (const p of packs.packs) {
   // A pack that cannot be redistributed must say so where a reader will see it.
   if (p.redistributable === false) {
     check(!!p.caution, `${at} is non-redistributable and carries a caution note`);
+  }
+  // A pack below the declared bar stays listed only with a written reason, so
+  // the policy cannot quietly rot into a suggestion.
+  const score = benchById[p.id]?.score;
+  if (typeof score === "number" && score < minScore) {
+    check(!!p.exception, `${at} scores ${score}, under the bar of ${minScore}, and must carry an "exception" note`);
   }
 }
 

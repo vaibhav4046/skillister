@@ -1,4 +1,4 @@
-import { getPacks, getRoutes, getBenchmarks, getRepos, ago, num, REVALIDATE } from "../lib/data";
+import { getPacks, getRoutes, getBenchmarks, ago, num, REVALIDATE } from "../lib/data";
 
 export const revalidate = 1800;
 
@@ -10,17 +10,36 @@ function Bar({ value }) {
   );
 }
 
-export default async function Home() {
-  const [{ packs, rejected }, { routes }, bench] = await Promise.all([getPacks(), getRoutes(), getBenchmarks()]);
-  const live = await getRepos(packs.map((p) => p.repo));
+function installCmd(p) {
+  const i = p.install || {};
+  if (i.type === "claude-marketplace") return `claude plugin marketplace add ${i.ref}`;
+  if (i.type === "claude-local-wrapper") return `skillister wrapper add ${p.id} ${i.url}`;
+  if (i.type === "git-clone") return `git clone --depth=1 ${i.url}`;
+  return `skillister install ${p.id}`;
+}
 
+export default async function Home({ searchParams }) {
+  const params = await searchParams;
+  const activeTag = typeof params?.tag === "string" ? params.tag : null;
+
+  const [{ packs, rejected, policy }, { routes }, bench] = await Promise.all([
+    getPacks(),
+    getRoutes(),
+    getBenchmarks(),
+  ]);
+
+  // Stars come from the benchmark run, which happens weekly inside Actions with
+  // an authenticated token. Calling the API live once per pack would put the
+  // page over the anonymous rate limit as the registry grows.
   const benchById = Object.fromEntries((bench.packs || []).map((b) => [b.id, b]));
-  const ranked = [...packs]
-    .map((p) => ({ ...p, bench: benchById[p.id], live: live[p.repo] }))
+  const all = [...packs]
+    .map((p) => ({ ...p, bench: benchById[p.id] }))
     .sort((a, b) => (b.bench?.score || 0) - (a.bench?.score || 0));
+  const ranked = activeTag ? all.filter((p) => (p.tags || []).includes(activeTag)) : all;
 
+  const tags = [...new Set(packs.flatMap((p) => p.tags || []))].sort();
   const totalSkills = (bench.packs || []).reduce((n, b) => n + (b.skills || 0), 0);
-  const totalStars = Object.values(live).reduce((n, r) => n + (r.stars || 0), 0);
+  const totalStars = (bench.packs || []).reduce((n, b) => n + (b.stars || 0), 0);
   const evalCount = routes.reduce((n, r) => n + (r.evals?.should?.length || 0) + (r.evals?.shouldNot?.length || 0), 0);
 
   return (
@@ -58,7 +77,7 @@ export default async function Home() {
             </div>
             <div>
               <span className="stat-n">{packs.length}</span>
-              <span className="meta">packs in the registry</span>
+              <span className="meta">packs, {rejected?.length || 0} rejected on record</span>
             </div>
             <div>
               <span className="stat-n">{routes.length}</span>
@@ -88,6 +107,28 @@ export default async function Home() {
             cost. Same commit in, same score out. Nothing here asks a model.
           </p>
 
+          <p className="body" style={{ maxWidth: 640, marginTop: 16 }}>
+            A pack is listed only at {policy?.minScore ?? 85} or above. Anything below stays listed
+            only with a written exception, and validation fails without one. Scores regenerate every
+            week, so a pack that rots falls off the bar on its own rather than coasting on its stars.
+          </p>
+
+          <div style={{ marginTop: 32, display: "flex", flexWrap: "wrap", gap: 0 }}>
+            <a className="tag" href="/#benchmarks" style={activeTag ? {} : { borderColor: "var(--chalk)", color: "var(--chalk)" }}>
+              all {all.length}
+            </a>
+            {tags.map((t) => (
+              <a
+                key={t}
+                className="tag"
+                href={`/?tag=${encodeURIComponent(t)}#benchmarks`}
+                style={activeTag === t ? { borderColor: "var(--chalk)", color: "var(--chalk)" } : {}}
+              >
+                {t}
+              </a>
+            ))}
+          </div>
+
           <div className="scroll-x" style={{ marginTop: 40 }}>
             <table className="table">
               <thead>
@@ -97,8 +138,7 @@ export default async function Home() {
                   <th>Skills</th>
                   <th>Stars</th>
                   <th>Licence</th>
-                  <th>Last push</th>
-                  <th>Verdict</th>
+                  <th>Install</th>
                 </tr>
               </thead>
               <tbody>
@@ -117,10 +157,13 @@ export default async function Home() {
                       </div>
                     </td>
                     <td className="num">{p.bench?.skills ?? "-"}</td>
-                    <td className="num">{num(p.live?.stars)}</td>
-                    <td className="num">{p.license}</td>
-                    <td className="num">{ago(p.live?.pushedAt)}</td>
-                    <td className="meta" style={{ textTransform: "none" }}>{p.bench?.verdict ?? "-"}</td>
+                    <td className="num">{num(p.bench?.stars)}</td>
+                    <td className="num">
+                      {p.license}
+                      {p.caution && <div className="tag" style={{ marginTop: 6 }}>caution</div>}
+                      {p.exception && <div className="tag" style={{ marginTop: 6 }}>exception</div>}
+                    </td>
+                    <td className="num" style={{ whiteSpace: "nowrap" }}>{installCmd(p)}</td>
                   </tr>
                 ))}
               </tbody>
@@ -128,8 +171,8 @@ export default async function Home() {
           </div>
 
           <p className="meta" style={{ marginTop: 16, textTransform: "none" }}>
-            Scores generated {bench.generated ? ago(bench.generated) : "not yet"} · star counts and
-            push dates are live from the GitHub API · reproduce any row with{" "}
+            Scores and stars generated {bench.generated ? ago(bench.generated) : "not yet"},
+            refreshed weekly by workflow · reproduce any row with{" "}
             <span className="chalk">skillister audit &lt;owner/repo&gt;</span>
           </p>
         </div>

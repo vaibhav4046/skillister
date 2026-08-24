@@ -9,9 +9,19 @@
       "repo": "obra/superpowers",
       "license": "MIT",
       "redistributable": true,
-      "tags": ["process", "planning", "debugging", "tdd", "verification"],
+      "tags": [
+        "process",
+        "planning",
+        "debugging",
+        "tdd",
+        "verification"
+      ],
       "summary": "Agentic skills framework and software development methodology. Process skills that set the method before any domain skill runs.",
-      "install": { "type": "claude-marketplace", "ref": "obra/superpowers-marketplace", "plugin": "superpowers" },
+      "install": {
+        "type": "claude-marketplace",
+        "ref": "obra/superpowers-marketplace",
+        "plugin": "superpowers"
+      },
       "recommended": [
         "brainstorming",
         "systematic-debugging",
@@ -27,7 +37,13 @@
       "repo": "addyosmani/agent-skills",
       "license": "MIT",
       "redistributable": true,
-      "tags": ["frontend", "performance", "web", "process", "shipping"],
+      "tags": [
+        "frontend",
+        "performance",
+        "web",
+        "process",
+        "shipping"
+      ],
       "summary": "Production-grade engineering skills covering the full lifecycle: spec, plan, build, verify, review, ship. Strongest single pack for web work.",
       "install": {
         "type": "claude-local-wrapper",
@@ -51,9 +67,19 @@
       "repo": "trailofbits/skills",
       "license": "CC-BY-SA-4.0",
       "redistributable": false,
-      "tags": ["security", "static-analysis", "python", "supply-chain", "testing"],
+      "tags": [
+        "security",
+        "static-analysis",
+        "python",
+        "supply-chain",
+        "testing"
+      ],
       "summary": "Security research, vulnerability detection, and code-quality skills from Trail of Bits. Per-plugin install, so take only what applies.",
-      "install": { "type": "claude-marketplace", "ref": "trailofbits/skills", "plugin": "*" },
+      "install": {
+        "type": "claude-marketplace",
+        "ref": "trailofbits/skills",
+        "plugin": "*"
+      },
       "recommended": [
         "modern-python",
         "static-analysis",
@@ -74,7 +100,13 @@
       "repo": "mattpocock/skills",
       "license": "MIT",
       "redistributable": true,
-      "tags": ["typescript", "process", "spec", "review", "architecture"],
+      "tags": [
+        "typescript",
+        "process",
+        "spec",
+        "review",
+        "architecture"
+      ],
       "summary": "Engineering and productivity skills: grilling a plan until it holds, spec and ticket synthesis, deep-module design, diagnosis loops.",
       "install": {
         "type": "claude-local-wrapper",
@@ -101,10 +133,19 @@
       "repo": "blader/humanizer",
       "license": "MIT",
       "redistributable": true,
-      "tags": ["writing", "editing"],
+      "tags": [
+        "writing",
+        "editing"
+      ],
       "summary": "Rewrites AI-sounding text so it reads naturally, without changing what it says.",
-      "install": { "type": "claude-marketplace", "ref": "blader/humanizer", "plugin": "humanizer" },
-      "recommended": ["humanizer"]
+      "install": {
+        "type": "claude-marketplace",
+        "ref": "blader/humanizer",
+        "plugin": "humanizer"
+      },
+      "recommended": [
+        "humanizer"
+      ]
     },
     {
       "id": "last30days",
@@ -112,10 +153,20 @@
       "repo": "mvanhorn/last30days-skill",
       "license": "MIT",
       "redistributable": true,
-      "tags": ["research", "trends"],
+      "tags": [
+        "research",
+        "trends"
+      ],
       "summary": "Researches a topic across Reddit, X, YouTube and Hacker News, so answers about what is current do not come from a stale training cutoff.",
-      "install": { "type": "claude-marketplace", "ref": "mvanhorn/last30days-skill", "plugin": "last30days" },
-      "recommended": ["last30days"]
+      "install": {
+        "type": "claude-marketplace",
+        "ref": "mvanhorn/last30days-skill",
+        "plugin": "last30days"
+      },
+      "recommended": [
+        "last30days"
+      ],
+      "exception": "Scores 80, under the bar of 85. Kept deliberately: it is a single-skill pack, and the audit's naming and uniqueness checks have little to measure across one file, which depresses the score without indicating a real quality problem. The skill itself parses, is specific, and states its triggers."
     },
     {
       "id": "obsidian",
@@ -123,10 +174,23 @@
       "repo": "kepano/obsidian-skills",
       "license": "MIT",
       "redistributable": true,
-      "tags": ["notes", "markdown", "obsidian"],
+      "tags": [
+        "notes",
+        "markdown",
+        "obsidian"
+      ],
       "summary": "Official Obsidian skills: the Obsidian CLI, Markdown conventions, Bases, JSON Canvas, and Defuddle.",
-      "install": { "type": "claude-marketplace", "ref": "kepano/obsidian-skills", "plugin": "obsidian" },
-      "recommended": ["obsidian-cli", "obsidian-markdown", "obsidian-bases", "defuddle"]
+      "install": {
+        "type": "claude-marketplace",
+        "ref": "kepano/obsidian-skills",
+        "plugin": "obsidian"
+      },
+      "recommended": [
+        "obsidian-cli",
+        "obsidian-markdown",
+        "obsidian-bases",
+        "defuddle"
+      ]
     },
     {
       "id": "anthropic-skills",
@@ -134,10 +198,197 @@
       "repo": "anthropics/skills",
       "license": "NONE",
       "redistributable": false,
-      "tags": ["documents", "artifacts", "mcp", "reference"],
+      "tags": [
+        "documents",
+        "artifacts",
+        "mcp",
+        "reference"
+      ],
       "summary": "Document processing (docx, pptx, xlsx, pdf), artifact building, MCP server authoring, and skill creation.",
-      "install": { "type": "claude-marketplace", "ref": "anthropics/skills", "plugin": "*" },
+      "install": {
+        "type": "claude-marketplace",
+        "ref": "anthropics/skills",
+        "plugin": "*"
+      },
       "caution": "No LICENSE file at the time of writing, which means all rights reserved. Install from source; do not mirror."
+    },
+    {
+      "id": "pm-skills",
+      "name": "PM Skills",
+      "repo": "phuryn/pm-skills",
+      "license": "MIT",
+      "redistributable": true,
+      "tags": [
+        "product",
+        "strategy",
+        "discovery",
+        "launch",
+        "research"
+      ],
+      "summary": "Product management from discovery through strategy, execution and launch. The highest audit score in the registry: every skill parses, is described specifically, and says when to use it.",
+      "install": {
+        "type": "claude-marketplace",
+        "ref": "phuryn/pm-skills",
+        "plugin": "*"
+      },
+      "recommended": [
+        "discovery",
+        "strategy",
+        "prioritization",
+        "launch"
+      ]
+    },
+    {
+      "id": "google-skills",
+      "name": "Google Product Skills",
+      "repo": "google/skills",
+      "license": "Apache-2.0",
+      "redistributable": true,
+      "tags": [
+        "gcp",
+        "gemini",
+        "cloud",
+        "ads",
+        "workspace"
+      ],
+      "summary": "Official skills for Google products: Cloud, Gemini, Ads and Workspace. Deep on GCP specifically, so install the plugin you need rather than the whole set.",
+      "install": {
+        "type": "claude-marketplace",
+        "ref": "google/skills",
+        "plugin": "*",
+        "why": "Cloning the whole repository fails on Windows with `Filename too long`: a cassandra-bigtable submodule exceeds MAX_PATH. Install the individual plugin instead of cloning, or enable core.longpaths."
+      },
+      "recommended": [
+        "gemini-api",
+        "cloud-run",
+        "bigquery"
+      ],
+      "caution": "The gemini-* skills target Vertex AI and the Gemini Enterprise Agent Platform, not the AI Studio SDK. Check which one you actually use before installing."
+    },
+    {
+      "id": "caveman",
+      "name": "Caveman",
+      "repo": "JuliusBrussee/caveman",
+      "license": "NOASSERTION",
+      "redistributable": false,
+      "tags": [
+        "output-style",
+        "tokens",
+        "brevity"
+      ],
+      "summary": "An output style that strips articles, filler and hedging from responses, cutting token use substantially on long sessions. Also ships a compression skill and a terse code-review mode.",
+      "install": {
+        "type": "claude-marketplace",
+        "ref": "JuliusBrussee/caveman",
+        "plugin": "caveman"
+      },
+      "recommended": [
+        "caveman",
+        "compress",
+        "caveman-review"
+      ],
+      "caution": "GitHub reports the licence as NOASSERTION, meaning it could not identify the terms. Read the LICENSE file before redistributing anything from it."
+    },
+    {
+      "id": "awesome-copilot",
+      "name": "GitHub Copilot Customizations",
+      "repo": "github/awesome-copilot",
+      "license": "MIT",
+      "redistributable": true,
+      "tags": [
+        "instructions",
+        "agents",
+        "prompts",
+        "copilot"
+      ],
+      "summary": "GitHub's own library of instructions, agents and skills for Copilot. Written for Copilot but the skills are plain SKILL.md and port to any agent CLI. Large, so take the ones you need.",
+      "install": {
+        "type": "git-clone",
+        "url": "https://github.com/github/awesome-copilot.git"
+      },
+      "recommended": [],
+      "caution": "429 skills. Cloning all of it will crowd your index; copy the directories you actually want into your skills folder."
+    },
+    {
+      "id": "context-engineering",
+      "name": "Agent Skills for Context Engineering",
+      "repo": "muratcankoylan/Agent-Skills-for-Context-Engineering",
+      "license": "MIT",
+      "redistributable": true,
+      "tags": [
+        "context",
+        "multi-agent",
+        "architecture",
+        "production"
+      ],
+      "summary": "Context engineering, multi-agent architecture and production agent patterns. Directly useful if you are building agents rather than only using them.",
+      "install": {
+        "type": "claude-marketplace",
+        "ref": "muratcankoylan/Agent-Skills-for-Context-Engineering",
+        "plugin": "*"
+      },
+      "recommended": []
+    },
+    {
+      "id": "book-to-skill",
+      "name": "Book to Skill",
+      "repo": "virgiliojr94/book-to-skill",
+      "license": "MIT",
+      "redistributable": true,
+      "tags": [
+        "research",
+        "documents",
+        "study",
+        "pdf"
+      ],
+      "summary": "Turns a book or paper (PDF, EPUB, DOCX, Markdown) into a structured skill, extracting the frameworks, principles and anti-patterns so an agent can apply them while you work.",
+      "install": {
+        "type": "claude-local-wrapper",
+        "url": "https://github.com/virgiliojr94/book-to-skill.git",
+        "ref": "master",
+        "why": "No .claude-plugin/marketplace.json, so `claude plugin marketplace add` rejects it. The default branch is master, not main."
+      },
+      "recommended": [
+        "book-to-skill"
+      ]
+    },
+    {
+      "id": "openmontage",
+      "name": "OpenMontage",
+      "repo": "calesthio/OpenMontage",
+      "license": "AGPL-3.0",
+      "redistributable": false,
+      "tags": [
+        "video",
+        "media",
+        "pipelines",
+        "production"
+      ],
+      "summary": "Agentic video production: editing pipelines, media tooling and a large set of production skills. Unusually broad for a media pack and it scores well on structure.",
+      "install": {
+        "type": "git-clone",
+        "url": "https://github.com/calesthio/OpenMontage.git"
+      },
+      "recommended": [],
+      "caution": "AGPL-3.0 is strong copyleft and reaches network use. Fine to install and run; do not vendor it into anything you ship under other terms."
+    },
+    {
+      "id": "khazix-skills",
+      "name": "Khazix Skills",
+      "repo": "KKKKhazix/khazix-skills",
+      "license": "MIT",
+      "redistributable": true,
+      "tags": [
+        "writing",
+        "productivity",
+        "chinese"
+      ],
+      "summary": "A small, tightly written collection covering goal definition and code tidiness. Documentation is primarily in Chinese; the skills themselves are well structured and score highly.",
+      "install": {
+        "type": "git-clone",
+        "url": "https://github.com/KKKKhazix/khazix-skills.git"
+      },
+      "recommended": []
     }
   ],
   "rejected": [
@@ -160,6 +411,31 @@
       "repo": "vercel-labs/skills",
       "skills": 1,
       "reason": "Not a skill pack. It is the `npx skills` installer tool, frequently miscatalogued as a collection."
+    },
+    {
+      "repo": "Shubhamsaboo/awesome-llm-apps",
+      "skills": 9,
+      "reason": "A curated list of AI applications, not a skill pack. The nine SKILL.md files are incidental to a repository whose purpose is showcasing projects."
+    },
+    {
+      "repo": "vercel-labs/agent-skills",
+      "skills": 9,
+      "reason": "Scores 77, below the 85 bar, and ships no licence at all, so the terms of use are all rights reserved."
+    },
+    {
+      "repo": "googleworkspace/cli",
+      "skills": 95,
+      "reason": "Scores 64. It is a CLI that happens to ship skills; most descriptions are too thin to route on."
+    },
+    {
+      "repo": "SimoneAvogadro/android-reverse-engineering-skill",
+      "skills": 1,
+      "reason": "Scores 10. Frontmatter does not parse, so the skill will not load at all."
     }
-  ]
+  ],
+  "policy": {
+    "minScore": 85,
+    "note": "A pack is listed only if `skillister audit` scores it 85 or above and it is a genuine skill pack rather than a collection that happens to contain a few SKILL.md files. Star count is not a criterion. Scores live in registry/benchmarks.json and are regenerated weekly by the bench workflow, so a pack that rots falls off the bar on its own.",
+    "exceptions": "A pack below minScore may stay listed only with an `exception` field stating why. Validation fails without it, so an exception is always a written decision rather than an oversight."
+  }
 }

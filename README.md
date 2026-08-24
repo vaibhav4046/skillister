@@ -104,18 +104,26 @@ Skillister indexes every host CLI it finds on the machine, so one index serves a
 
 ## The registry
 
-Curated, with reasons. `skillister packs` prints this, including what was deliberately left out and why.
+16 packs, listed only if `skillister audit` scores them 85+ and they are a genuine skill pack. Star count is not a criterion. `skillister packs` prints this, including the 8 that were deliberately left out and why.
 
 | Pack | Licence | What it is good for |
 |---|---|---|
-| [obra/superpowers](https://github.com/obra/superpowers) | MIT | Process: brainstorming, systematic debugging, TDD, verification |
-| [addyosmani/agent-skills](https://github.com/addyosmani/agent-skills) | MIT | Frontend, performance, Core Web Vitals, shipping |
-| [trailofbits/skills](https://github.com/trailofbits/skills) | CC-BY-SA-4.0 | Security review, static analysis, supply chain, modern Python |
-| [mattpocock/skills](https://github.com/mattpocock/skills) | MIT | Specs, tickets, deep-module design, diagnosis loops |
-| [blader/humanizer](https://github.com/blader/humanizer) | MIT | Rewriting text that reads as generated |
-| [mvanhorn/last30days-skill](https://github.com/mvanhorn/last30days-skill) | MIT | Answering "what is current" past a training cutoff |
-| [kepano/obsidian-skills](https://github.com/kepano/obsidian-skills) | MIT | Obsidian CLI, Markdown, Bases, Defuddle |
-| [anthropics/skills](https://github.com/anthropics/skills) | none stated | Documents, artifacts, MCP servers |
+| [obra/superpowers](https://github.com/obra/superpowers) | MIT | Agentic skills framework and software development methodology |
+| [addyosmani/agent-skills](https://github.com/addyosmani/agent-skills) | MIT | Production-grade engineering skills covering the full lifecycle: spec, plan, build, verify, review, ship |
+| [trailofbits/skills](https://github.com/trailofbits/skills) | CC-BY-SA-4.0 | Security research, vulnerability detection, and code-quality skills from Trail of Bits |
+| [mattpocock/skills](https://github.com/mattpocock/skills) | MIT | Engineering and productivity skills: grilling a plan until it holds, spec and ticket synthesis, deep-module design, diagnosis loops |
+| [blader/humanizer](https://github.com/blader/humanizer) | MIT | Rewrites AI-sounding text so it reads naturally, without changing what it says |
+| [mvanhorn/last30days-skill](https://github.com/mvanhorn/last30days-skill) | MIT | Researches a topic across Reddit, X, YouTube and Hacker News, so answers about what is current do not come from a stale training cutoff |
+| [kepano/obsidian-skills](https://github.com/kepano/obsidian-skills) | MIT | Official Obsidian skills: the Obsidian CLI, Markdown conventions, Bases, JSON Canvas, and Defuddle |
+| [anthropics/skills](https://github.com/anthropics/skills) | NONE | Document processing (docx, pptx, xlsx, pdf), artifact building, MCP server authoring, and skill creation |
+| [phuryn/pm-skills](https://github.com/phuryn/pm-skills) | MIT | Product management from discovery through strategy, execution and launch |
+| [google/skills](https://github.com/google/skills) | Apache-2.0 | Official skills for Google products: Cloud, Gemini, Ads and Workspace |
+| [JuliusBrussee/caveman](https://github.com/JuliusBrussee/caveman) | NOASSERTION | An output style that strips articles, filler and hedging from responses, cutting token use substantially on long sessions |
+| [github/awesome-copilot](https://github.com/github/awesome-copilot) | MIT | GitHub's own library of instructions, agents and skills for Copilot |
+| [muratcankoylan/Agent-Skills-for-Context-Engineering](https://github.com/muratcankoylan/Agent-Skills-for-Context-Engineering) | MIT | Context engineering, multi-agent architecture and production agent patterns |
+| [virgiliojr94/book-to-skill](https://github.com/virgiliojr94/book-to-skill) | MIT | Turns a book or paper (PDF, EPUB, DOCX, Markdown) into a structured skill, extracting the frameworks, principles and anti-patterns so an agent can apply them while you work |
+| [calesthio/OpenMontage](https://github.com/calesthio/OpenMontage) | AGPL-3.0 | Agentic video production: editing pipelines, media tooling and a large set of production skills |
+| [KKKKhazix/khazix-skills](https://github.com/KKKKhazix/khazix-skills) | MIT | A small, tightly written collection covering goal definition and code tidiness |
 
 The registry also records install quirks that cost real time to find. For example: `claude plugin install` fails with `Host key verification failed` when a marketplace declares a `github` source, because it resolves to SSH. `skillister wrapper add` works around it in one command.
 

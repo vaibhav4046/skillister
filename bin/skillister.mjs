@@ -295,7 +295,19 @@ switch (cmd) {
   case "bench": {
     // Audit every registry pack and print a leaderboard. `--json` writes the
     // machine-readable form the site and the workflow consume.
-    const { packs } = read(packsFile());
+    // `--candidates` audits the discovered-but-not-yet-listed packs instead,
+    // so promotion into the registry is decided by measurement.
+    const useCandidates = rest.includes("--candidates");
+    const limit = Number((rest.find((a) => a.startsWith("--limit=")) || "").split("=")[1]) || 0;
+    let packs;
+    if (useCandidates) {
+      const file = path.join(ROOT, "registry", "candidates.json");
+      const list = fs.existsSync(file) ? read(file).candidates : [];
+      packs = list.map((c) => ({ id: c.repo.replace(/[^a-z0-9]+/gi, "-").toLowerCase(), repo: c.repo, license: c.license }));
+      if (limit) packs = packs.slice(0, limit);
+    } else {
+      packs = read(packsFile()).packs;
+    }
     const rows = [];
     for (const p of packs) {
       const tmp = fs.mkdtempSync(path.join(os.tmpdir(), "skillister-"));
