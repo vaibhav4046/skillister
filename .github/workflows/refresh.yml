@@ -48,7 +48,9 @@ jobs:
         run: node scripts/report-drift.mjs >> candidates.md
 
       - name: Verify the registry still passes
-        run: node test/validate.mjs && node test/eval.mjs
+        # Score drift is reported as an issue below, not treated as a failure.
+        # Every other check stays a hard failure.
+        run: node test/validate.mjs --drift=report && node test/eval.mjs
 
       - name: Commit refreshed measurements
         run: |

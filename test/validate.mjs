@@ -3,6 +3,13 @@
  * Static validation. Runs on every pull request, needs no API key and no
  * network. Everything here is a hard failure: a broken registry entry that
  * merges is a broken install for whoever runs it next.
+ *
+ * One exception, and only when asked for: `--drift=report`, used by the daily
+ * refresh. A live re-audit can push a pack under the score bar overnight. That
+ * is a judgement call for a human, so the refresh reports it as an issue
+ * rather than failing the job (a red job would also block the commit of fresh
+ * measurements and the issue itself). Pull requests run without the flag, so a
+ * pack under the bar still cannot be merged without a written exception.
  */
 
 import fs from "node:fs";
@@ -13,6 +20,8 @@ import { compile } from "../src/router.mjs";
 
 const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..");
 const read = (p) => JSON.parse(fs.readFileSync(p, "utf8"));
+
+const driftIsReported = process.argv.includes("--drift=report");
 
 let failures = 0;
 let checks = 0;
@@ -70,7 +79,13 @@ for (const p of packs.packs) {
   // the policy cannot quietly rot into a suggestion.
   const score = benchById[p.id]?.score;
   if (typeof score === "number" && score < minScore) {
-    check(!!p.exception, `${at} scores ${score}, under the bar of ${minScore}, and must carry an "exception" note`);
+    const label = `${at} scores ${score}, under the bar of ${minScore}, and must carry an "exception" note`;
+    if (driftIsReported && !p.exception) {
+      checks++;
+      console.warn(`  WARN  ${label} (reported by the refresh as drift, not a failure)`);
+    } else {
+      check(!!p.exception, label);
+    }
   }
 }
 
