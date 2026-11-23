@@ -1,25 +1,25 @@
 {
-  "generated": "2026-11-22T13:50:56.036Z",
+  "generated": "2026-11-23T16:57:44.550Z",
   "note": "Verified candidates: each was checked via the git tree API and contains at least one SKILL.md. Presence here is not an endorsement.",
   "minStars": 200,
   "candidates": [
     {
       "repo": "Leonxlnx/taste-skill",
-      "stars": 119938,
+      "stars": 120541,
       "skills": 1,
       "license": "MIT",
       "hasMarketplace": true,
-      "updated": "2026-11-22",
+      "updated": "2026-11-23",
       "description": "Agent skills that give coding agents taste: art direction, reference images and a browser check instead of generic AI pa",
       "flags": []
     },
     {
       "repo": "tt-a1i/archify",
-      "stars": 98710,
-      "skills": 5,
+      "stars": 99036,
+      "skills": 6,
       "license": "Apache-2.0",
       "hasMarketplace": false,
-      "updated": "2026-11-22",
+      "updated": "2026-11-23",
       "description": "Turn any idea, plan, or codebase into a beautiful interactive diagram. An agent skill for Claude Code, Codex, and more.",
       "flags": [
         "no marketplace.json - needs the local-wrapper install path"
@@ -27,11 +27,11 @@
     },
     {
       "repo": "OpenMontageInc/OpenMontage",
-      "stars": 82281,
+      "stars": 82642,
       "skills": 141,
       "license": "AGPL-3.0",
       "hasMarketplace": false,
-      "updated": "2026-11-22",
+      "updated": "2026-11-23",
       "description": "World's first open-source, agentic video production system. 12 production pipelines, 100+ tools, 700+ agent skill and pr",
       "flags": [
         "**AGPL-3.0** - copyleft, registry only",
@@ -40,11 +40,11 @@
     },
     {
       "repo": "cloudflare/security-audit-skill",
-      "stars": 76895,
+      "stars": 77431,
       "skills": 1,
       "license": "MIT",
       "hasMarketplace": false,
-      "updated": "2026-11-22",
+      "updated": "2026-11-23",
       "description": "A coding-agent skill for multi-phase security audits with independently verified, machine-readable findings",
       "flags": [
         "no marketplace.json - needs the local-wrapper install path"
@@ -52,21 +52,21 @@
     },
     {
       "repo": "wshobson/agents",
-      "stars": 42787,
+      "stars": 42835,
       "skills": 185,
       "license": "MIT",
       "hasMarketplace": true,
-      "updated": "2026-11-22",
+      "updated": "2026-11-23",
       "description": "Plugins, agents, skills, and commands for Claude Code, Codex CLI, Cursor, OpenCode, Antigravity CLI, GitHub Copilot, and",
       "flags": []
     },
     {
       "repo": "op7418/guizang-ppt-skill",
-      "stars": 30250,
+      "stars": 30311,
       "skills": 1,
       "license": "AGPL-3.0",
       "hasMarketplace": false,
-      "updated": "2026-11-22",
+      "updated": "2026-11-23",
       "description": "AI-agent Skill for generating polished HTML slide decks: editorial magazine and Swiss layouts, image prompts, social cov",
       "flags": [
         "**AGPL-3.0** - copyleft, registry only",
@@ -75,11 +75,11 @@
     },
     {
       "repo": "wheresryan22/anatomy",
-      "stars": 28656,
+      "stars": 28865,
       "skills": 1,
       "license": "MIT",
       "hasMarketplace": false,
-      "updated": "2026-11-22",
+      "updated": "2026-11-23",
       "description": "An agent skill for creating detailed, interactive isometric illustrations of real-world machines and complex systems. Ge",
       "flags": [
         "no marketplace.json - needs the local-wrapper install path"
@@ -87,11 +87,11 @@
     },
     {
       "repo": "NVIDIA/SkillSpector",
-      "stars": 27248,
+      "stars": 27398,
       "skills": 34,
       "license": "Apache-2.0",
       "hasMarketplace": false,
-      "updated": "2026-11-22",
+      "updated": "2026-11-23",
       "description": "Security scanner for AI agent skills. Detect vulnerabilities, malicious patterns, security risks, prompt injection, data",
       "flags": [
         "no marketplace.json - needs the local-wrapper install path"
@@ -99,11 +99,11 @@
     },
     {
       "repo": "op7418/Humanizer-zh",
-      "stars": 23543,
+      "stars": 23633,
       "skills": 1,
       "license": "MIT",
       "hasMarketplace": false,
-      "updated": "2026-11-22",
+      "updated": "2026-11-23",
       "description": "Humanizer 的汉化版本，Claude Code Skills，旨在消除文本中 AI 生成的痕迹。",
       "flags": [
         "no marketplace.json - needs the local-wrapper install path"
@@ -111,31 +111,31 @@
     },
     {
       "repo": "elementalsouls/Claude-BugHunter",
-      "stars": 16959,
+      "stars": 19242,
       "skills": 83,
       "license": "MIT",
       "hasMarketplace": true,
-      "updated": "2026-11-22",
+      "updated": "2026-11-23",
       "description": "A Claude Code skill bundle for bug hunting and external red-team work - 82 skills, 15 slash commands, 681 disclosed-repo",
       "flags": []
     },
     {
       "repo": "patch-gg/pixelfx",
-      "stars": 8710,
+      "stars": 8857,
       "skills": 1,
       "license": "MIT",
       "hasMarketplace": true,
-      "updated": "2026-11-22",
+      "updated": "2026-11-23",
       "description": "244 pixel art effects, every one a small piece of code. Plus a Claude Code skill to make your own.",
       "flags": []
     },
     {
       "repo": "tradermonty/claude-trading-skills",
-      "stars": 7723,
+      "stars": 7952,
       "skills": 94,
       "license": "MIT",
       "hasMarketplace": false,
-      "updated": "2026-11-22",
+      "updated": "2026-11-23",
       "description": "Claude Code skills for equity investors and traders — market analysis, technical charting, economic calendars, screeners",
       "flags": [
         "no marketplace.json - needs the local-wrapper install path"
@@ -143,17 +143,17 @@
     },
     {
       "repo": "danyuchn/asd-ste100-skill",
-      "stars": 6811,
+      "stars": 6849,
       "skills": 1,
       "license": "MIT",
       "hasMarketplace": true,
-      "updated": "2026-11-22",
+      "updated": "2026-11-23",
       "description": "ASD-STE100 Simplified Technical English rules, repurposed as a Claude Code skill for rewriting ambiguous agent-facing En",
       "flags": []
     },
     {
       "repo": "zarazhangrui/codebase-to-course",
-      "stars": 5819,
+      "stars": 5821,
       "skills": 1,
       "license": "NONE",
       "hasMarketplace": false,
@@ -166,11 +166,11 @@
     },
     {
       "repo": "elvarofficial/teardown",
-      "stars": 4004,
+      "stars": 4070,
       "skills": 1,
       "license": "MIT",
       "hasMarketplace": false,
-      "updated": "2026-11-22",
+      "updated": "2026-11-23",
       "description": "A Claude Code skill that turns any machine into a 3D simulator you can take apart",
       "flags": [
         "no marketplace.json - needs the local-wrapper install path"
@@ -182,7 +182,7 @@
       "skills": 7,
       "license": "MIT",
       "hasMarketplace": false,
-      "updated": "2026-11-22",
+      "updated": "2026-11-23",
       "description": "Deploy Your Frontend in a Single Command. Claude Code Skills supported.",
       "flags": [
         "no marketplace.json - needs the local-wrapper install path"
@@ -190,21 +190,21 @@
     },
     {
       "repo": "chaseai-yt/claudex-loop",
-      "stars": 3546,
+      "stars": 3561,
       "skills": 6,
       "license": "NOASSERTION",
       "hasMarketplace": true,
-      "updated": "2026-11-22",
+      "updated": "2026-11-23",
       "description": "Claude Code skill: four-phase plan hardening (recon, interrogate, Codex adversarial review, cross-model build & inspecti",
       "flags": []
     },
     {
       "repo": "Agentchengfeng/chengfeng-videocut-skills",
-      "stars": 3256,
+      "stars": 3263,
       "skills": 8,
       "license": "Apache-2.0",
       "hasMarketplace": false,
-      "updated": "2026-11-22",
+      "updated": "2026-11-23",
       "description": "用 Claude Code Skills 做的视频剪辑 Agent",
       "flags": [
         "no marketplace.json - needs the local-wrapper install path"
@@ -212,11 +212,11 @@
     },
     {
       "repo": "aiwithremy/claude-skills-llm-council",
-      "stars": 3218,
+      "stars": 3247,
       "skills": 1,
       "license": "NONE",
       "hasMarketplace": false,
-      "updated": "2026-11-22",
+      "updated": "2026-11-23",
       "description": "LLM Council — a Claude Code skill that runs your decisions through 5 AI advisors with peer review",
       "flags": [
         "**no licence** - all rights reserved, registry only, never vendor",
@@ -229,7 +229,7 @@
       "skills": 1,
       "license": "MIT",
       "hasMarketplace": false,
-      "updated": "2026-11-22",
+      "updated": "2026-11-23",
       "description": "A Claude Code skill for generating UI in the Nothing design language. Monochrome, typographic, industrial.",
       "flags": [
         "no marketplace.json - needs the local-wrapper install path"
@@ -237,11 +237,11 @@
     },
     {
       "repo": "threerocks/hand-drawn-styles",
-      "stars": 2737,
+      "stars": 2741,
       "skills": 1,
       "license": "MIT",
       "hasMarketplace": false,
-      "updated": "2026-11-22",
+      "updated": "2026-11-23",
       "description": "Claude Code skill：把内容套进内置手绘画风配方,产出可直接复制的生图提示词。内置儿童涂色/极简线条/蜡笔童涂/吉卜力/小豆人涂鸦 5 种已验证画风。",
       "flags": [
         "no marketplace.json - needs the local-wrapper install path"
@@ -249,11 +249,11 @@
     },
     {
       "repo": "yctimlin/mcp_excalidraw",
-      "stars": 2674,
+      "stars": 2680,
       "skills": 1,
       "license": "MIT",
       "hasMarketplace": false,
-      "updated": "2026-11-21",
+      "updated": "2026-11-23",
       "description": "MCP server and Claude Code skill for Excalidraw — programmatic canvas toolkit to create, edit, and export diagrams via A",
       "flags": [
         "no marketplace.json - needs the local-wrapper install path"
@@ -261,11 +261,11 @@
     },
     {
       "repo": "P4nda0s/reverse-skills",
-      "stars": 2365,
+      "stars": 2368,
       "skills": 7,
       "license": "NONE",
       "hasMarketplace": false,
-      "updated": "2026-11-21",
+      "updated": "2026-11-23",
       "description": "Reverse engineering skills for Claude Code | 逆向工程 Claude Code Skills 插件",
       "flags": [
         "**no licence** - all rights reserved, registry only, never vendor",
@@ -274,11 +274,11 @@
     },
     {
       "repo": "NiazMorshed2007/reanimate",
-      "stars": 2129,
+      "stars": 2357,
       "skills": 1,
       "license": "MIT",
       "hasMarketplace": false,
-      "updated": "2026-11-22",
+      "updated": "2026-11-23",
       "description": "A Claude Code skill that reverse-engineers any animation frame by frame, then proves the copy moves the same.",
       "flags": [
         "no marketplace.json - needs the local-wrapper install path"
@@ -286,11 +286,11 @@
     },
     {
       "repo": "DreambigOu/ELI5",
-      "stars": 2051,
+      "stars": 2104,
       "skills": 1,
       "license": "MIT",
       "hasMarketplace": false,
-      "updated": "2026-11-22",
+      "updated": "2026-11-23",
       "description": "ELI5 — A Claude Code skill that explains anything to anyone: kids, managers, engineers, parents. Adapts tone, vocabulary",
       "flags": [
         "no marketplace.json - needs the local-wrapper install path"
@@ -298,11 +298,11 @@
     },
     {
       "repo": "NeoLabHQ/context-engineering-kit",
-      "stars": 1846,
+      "stars": 1848,
       "skills": 204,
       "license": "GPL-3.0",
       "hasMarketplace": true,
-      "updated": "2026-11-22",
+      "updated": "2026-11-23",
       "description": "Hand-crafted Claude Code Skills focused on improving agent results quality. Compatible with OpenCode, Cursor, Antigravit",
       "flags": [
         "**204 skills** - check it is curation, not a dump",
@@ -311,17 +311,27 @@
     },
     {
       "repo": "Jakeschincariol/arena-skill",
-      "stars": 1572,
+      "stars": 1590,
       "skills": 1,
       "license": "MIT",
       "hasMarketplace": true,
-      "updated": "2026-11-22",
+      "updated": "2026-11-23",
       "description": "When Claude keeps giving you bad answers, make 100 versions of it fight to the death. Same task, 100 different strategie",
       "flags": []
     },
     {
+      "repo": "EricJujianZou/rederive",
+      "stars": 1590,
+      "skills": 1,
+      "license": "MIT",
+      "hasMarketplace": true,
+      "updated": "2026-11-23",
+      "description": "Explain code that AI wrote for you, in an interview or at work. An open source Claude Code skill that asks how you would",
+      "flags": []
+    },
+    {
       "repo": "daymade/claude-code-skills",
-      "stars": 1543,
+      "stars": 1544,
       "skills": 123,
       "license": "MIT",
       "hasMarketplace": true,
@@ -331,26 +341,16 @@
     },
     {
       "repo": "zsyggg/paper-craft-skills",
-      "stars": 1524,
+      "stars": 1528,
       "skills": 3,
       "license": "NONE",
       "hasMarketplace": false,
-      "updated": "2026-11-22",
+      "updated": "2026-11-23",
       "description": "Claude Code skills for academic papers: deep analysis, comics, summaries | 论文工艺：深度解读、漫画生成、速览总结",
       "flags": [
         "**no licence** - all rights reserved, registry only, never vendor",
         "no marketplace.json - needs the local-wrapper install path"
       ]
-    },
-    {
-      "repo": "skills-directory/skill-codex",
-      "stars": 1480,
-      "skills": 1,
-      "license": "MIT",
-      "hasMarketplace": true,
-      "updated": "2026-11-22",
-      "description": "A claude code skill to delegate prompts to codex",
-      "flags": []
     },
     {
       "repo": "mhattingpete/claude-skills-marketplace",
