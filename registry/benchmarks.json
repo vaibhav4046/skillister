@@ -1,15 +1,15 @@
 {
-  "generated": "2026-11-23T16:56:46.448Z",
+  "generated": "2026-11-24T16:46:29.821Z",
   "packs": [
     {
       "id": "addy-agent-skills",
       "repo": "addyosmani/agent-skills",
       "license": "MIT",
       "description": "Production-grade engineering skills for AI coding agents.",
-      "forks": 12457,
-      "issues": 130,
-      "pushedAt": "2026-11-18T20:06:38Z",
-      "stars": 119944,
+      "forks": 12485,
+      "issues": 115,
+      "pushedAt": "2026-11-24T07:11:17Z",
+      "stars": 120151,
       "score": 100,
       "verdict": "excellent",
       "skills": 26,
@@ -20,10 +20,10 @@
         "triggers": 1,
         "naming": 1,
         "unique": 1,
-        "avgBytes": 13909,
+        "avgBytes": 13920,
         "lean": 1,
         "licensed": 1,
-        "staleDays": 4
+        "staleDays": 0
       },
       "issueCount": 0
     },
@@ -32,10 +32,10 @@
       "repo": "trailofbits/skills",
       "license": "CC-BY-SA-4.0",
       "description": "Trail of Bits skills for security research, vulnerability detection, and audit workflows",
-      "forks": 728,
-      "issues": 170,
-      "pushedAt": "2026-11-21T07:06:22Z",
-      "stars": 8366,
+      "forks": 732,
+      "issues": 172,
+      "pushedAt": "2026-11-24T02:56:05Z",
+      "stars": 8392,
       "score": 99,
       "verdict": "excellent",
       "skills": 99,
@@ -49,7 +49,7 @@
         "avgBytes": 11092,
         "lean": 1,
         "licensed": 1,
-        "staleDays": 2
+        "staleDays": 0
       },
       "issueCount": 0
     },
@@ -61,7 +61,7 @@
       "forks": 2906,
       "issues": 52,
       "pushedAt": "2026-11-08T23:10:04Z",
-      "stars": 28253,
+      "stars": 28283,
       "score": 99,
       "verdict": "excellent",
       "skills": 72,
@@ -75,7 +75,7 @@
         "avgBytes": 4375,
         "lean": 1,
         "licensed": 1,
-        "staleDays": 14
+        "staleDays": 15
       },
       "issueCount": 0
     },
@@ -84,10 +84,10 @@
       "repo": "google/skills",
       "license": "Apache-2.0",
       "description": "Agent Skills for Google products and technologies",
-      "forks": 2040,
-      "issues": 42,
-      "pushedAt": "2026-11-23T09:43:35Z",
-      "stars": 24576,
+      "forks": 2046,
+      "issues": 43,
+      "pushedAt": "2026-11-24T16:31:35Z",
+      "stars": 24609,
       "score": 99,
       "verdict": "excellent",
       "skills": 225,
@@ -98,7 +98,7 @@
         "triggers": 0.9288888888888889,
         "naming": 1,
         "unique": 0.9733333333333334,
-        "avgBytes": 14482,
+        "avgBytes": 14484,
         "lean": 1,
         "licensed": 1,
         "staleDays": 0
@@ -110,10 +110,10 @@
       "repo": "obra/superpowers",
       "license": "MIT",
       "description": "An agentic skills framework & software development methodology that works.",
-      "forks": 28818,
-      "issues": 361,
+      "forks": 28888,
+      "issues": 359,
       "pushedAt": "2026-11-03T23:24:58Z",
-      "stars": 324816,
+      "stars": 325736,
       "score": 98,
       "verdict": "excellent",
       "skills": 15,
@@ -127,7 +127,7 @@
         "avgBytes": 9540,
         "lean": 1,
         "licensed": 1,
-        "staleDays": 19
+        "staleDays": 20
       },
       "issueCount": 1
     },
@@ -136,10 +136,10 @@
       "repo": "kepano/obsidian-skills",
       "license": "MIT",
       "description": "Teach your agent to use Obsidian and open formats including Markdown, Bases, JSON Canvas.",
-      "forks": 3812,
+      "forks": 3819,
       "issues": 4,
       "pushedAt": "2026-11-20T19:22:47Z",
-      "stars": 53543,
+      "stars": 53619,
       "score": 94,
       "verdict": "excellent",
       "skills": 7,
@@ -153,7 +153,7 @@
         "avgBytes": 6855,
         "lean": 1,
         "licensed": 1,
-        "staleDays": 2
+        "staleDays": 3
       },
       "issueCount": 1
     },
@@ -162,10 +162,10 @@
       "repo": "calesthio/OpenMontage",
       "license": "AGPL-3.0",
       "description": "World's first open-source, agentic video production system. 12 production pipelines, 100+ tools, 700+ agent skill and production-knowledge files. Turn your AI coding assistant into a full video production studio.",
-      "forks": 11264,
-      "issues": 356,
+      "forks": 11323,
+      "issues": 357,
       "pushedAt": "2026-11-16T06:55:27Z",
-      "stars": 82642,
+      "stars": 83005,
       "score": 91,
       "verdict": "excellent",
       "skills": 141,
@@ -179,7 +179,7 @@
         "avgBytes": 8543,
         "lean": 1,
         "licensed": 1,
-        "staleDays": 7
+        "staleDays": 8
       },
       "issueCount": 55
     },
@@ -188,10 +188,10 @@
       "repo": "JuliusBrussee/caveman",
       "license": "Apache-2.0",
       "description": "why use many token when few token do trick. Skill + local proxy for coding agents: shorter answers, smaller tool output, every original recoverable.",
-      "forks": 7141,
-      "issues": 86,
-      "pushedAt": "2026-11-23T05:09:14Z",
-      "stars": 122358,
+      "forks": 7156,
+      "issues": 103,
+      "pushedAt": "2026-11-24T06:57:23Z",
+      "stars": 122598,
       "score": 90,
       "verdict": "excellent",
       "skills": 28,
@@ -214,10 +214,10 @@
       "repo": "github/awesome-copilot",
       "license": "MIT",
       "description": "Community-contributed instructions, agents, skills, and configurations to help you make the most of GitHub Copilot.",
-      "forks": 5417,
-      "issues": 111,
+      "forks": 5426,
+      "issues": 118,
       "pushedAt": "2026-11-23T02:29:40Z",
-      "stars": 41476,
+      "stars": 41518,
       "score": 90,
       "verdict": "excellent",
       "skills": 482,
@@ -231,7 +231,7 @@
         "avgBytes": 9136,
         "lean": 1,
         "licensed": 1,
-        "staleDays": 0
+        "staleDays": 1
       },
       "issueCount": 50
     },
@@ -240,10 +240,10 @@
       "repo": "blader/humanizer",
       "license": "MIT",
       "description": "Agent skill that removes signs of AI-generated writing from text",
-      "forks": 5691,
-      "issues": 5,
+      "forks": 5730,
+      "issues": 8,
       "pushedAt": "2026-11-19T18:53:14Z",
-      "stars": 72662,
+      "stars": 73059,
       "score": 88,
       "verdict": "excellent",
       "skills": 1,
@@ -257,7 +257,7 @@
         "avgBytes": 33628,
         "lean": 0.6593,
         "licensed": 1,
-        "staleDays": 3
+        "staleDays": 4
       },
       "issueCount": 1
     },
@@ -266,10 +266,10 @@
       "repo": "anthropics/skills",
       "license": "NONE",
       "description": "Public repository for Agent Skills",
-      "forks": 23331,
-      "issues": 1576,
+      "forks": 23383,
+      "issues": 1579,
       "pushedAt": "2026-11-16T14:22:50Z",
-      "stars": 199348,
+      "stars": 199802,
       "score": 88,
       "verdict": "excellent",
       "skills": 20,
@@ -283,7 +283,7 @@
         "avgBytes": 15012,
         "lean": 1,
         "licensed": 0,
-        "staleDays": 7
+        "staleDays": 8
       },
       "issueCount": 2
     },
@@ -295,7 +295,7 @@
       "forks": 1521,
       "issues": 58,
       "pushedAt": "2026-11-21T07:36:17Z",
-      "stars": 18407,
+      "stars": 18415,
       "score": 87,
       "verdict": "excellent",
       "skills": 25,
@@ -309,7 +309,7 @@
         "avgBytes": 15829,
         "lean": 1,
         "licensed": 1,
-        "staleDays": 2
+        "staleDays": 3
       },
       "issueCount": 4
     },
@@ -318,10 +318,10 @@
       "repo": "KKKKhazix/khazix-skills",
       "license": "MIT",
       "description": "数字生命卡兹克开源的 AI Skills 合集 | Agent Skills: leader（帮你定义目标）, neat-freak 洁癖, hv-analysis, khazix-writer & more — Claude Code, Codex & 40+ agents",
-      "forks": 2360,
+      "forks": 2363,
       "issues": 0,
       "pushedAt": "2026-11-18T12:51:25Z",
-      "stars": 22483,
+      "stars": 22515,
       "score": 85,
       "verdict": "excellent",
       "skills": 6,
@@ -335,7 +335,7 @@
         "avgBytes": 13881,
         "lean": 1,
         "licensed": 1,
-        "staleDays": 5
+        "staleDays": 6
       },
       "issueCount": 0
     },
@@ -344,36 +344,36 @@
       "repo": "mattpocock/skills",
       "license": "MIT",
       "description": "Skills for Real Engineers. Straight from my .agents directory.",
-      "forks": 27825,
-      "issues": 267,
-      "pushedAt": "2026-11-19T13:35:13Z",
-      "stars": 331196,
+      "forks": 27902,
+      "issues": 266,
+      "pushedAt": "2026-11-24T14:43:16Z",
+      "stars": 331990,
       "score": 84,
       "verdict": "solid",
       "skills": 39,
       "metrics": {
         "total": 39,
         "parseable": 1,
-        "described": 0.717948717948718,
+        "described": 0.7435897435897436,
         "triggers": 0.38461538461538464,
         "naming": 1,
         "unique": 1,
-        "avgBytes": 4554,
+        "avgBytes": 4548,
         "lean": 1,
         "licensed": 1,
-        "staleDays": 4
+        "staleDays": 0
       },
-      "issueCount": 11
+      "issueCount": 10
     },
     {
       "id": "last30days",
       "repo": "mvanhorn/last30days-skill",
       "license": "MIT",
       "description": "AI agent skill that researches any topic across Reddit, X, YouTube, HN, Polymarket, and the web - then synthesizes a grounded summary",
-      "forks": 6473,
-      "issues": 24,
-      "pushedAt": "2026-11-23T01:00:01Z",
-      "stars": 73267,
+      "forks": 6523,
+      "issues": 32,
+      "pushedAt": "2026-11-24T16:38:12Z",
+      "stars": 73965,
       "score": 84,
       "verdict": "solid",
       "skills": 1,
@@ -396,10 +396,10 @@
       "repo": "virgiliojr94/book-to-skill",
       "license": "MIT",
       "description": "Turn any technical book PDF into a Claude Code skill — ready to study, reference, and use while you work.",
-      "forks": 4135,
-      "issues": 28,
+      "forks": 4152,
+      "issues": 29,
       "pushedAt": "2026-11-22T21:22:39Z",
-      "stars": 38842,
+      "stars": 38939,
       "score": 70,
       "verdict": "solid",
       "skills": 1,
@@ -413,7 +413,7 @@
         "avgBytes": 57825,
         "lean": 0.05437499999999995,
         "licensed": 1,
-        "staleDays": 0
+        "staleDays": 1
       },
       "issueCount": 1
     }

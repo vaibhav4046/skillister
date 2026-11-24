@@ -1,15 +1,15 @@
 {
-  "generated": "2026-11-23T16:58:14.346Z",
+  "generated": "2026-11-24T16:48:04.197Z",
   "packs": [
     {
       "id": "wshobson-agents",
       "repo": "wshobson/agents",
       "license": "MIT",
       "description": "Plugins, agents, skills, and commands for Claude Code, Codex CLI, Cursor, OpenCode, Antigravity CLI, GitHub Copilot, and Pi, written once in Markdown and adapted to each tool by generators with validation and evals.",
-      "forks": 4531,
+      "forks": 4536,
       "issues": 6,
-      "pushedAt": "2026-11-23T12:49:14Z",
-      "stars": 42835,
+      "pushedAt": "2026-11-24T14:32:25Z",
+      "stars": 42863,
       "score": 100,
       "verdict": "excellent",
       "skills": 185,
@@ -32,10 +32,10 @@
       "repo": "patch-gg/pixelfx",
       "license": "MIT",
       "description": "244 pixel art effects, every one a small piece of code. Plus a Claude Code skill to make your own.",
-      "forks": 1163,
-      "issues": 16,
+      "forks": 1181,
+      "issues": 17,
       "pushedAt": "2026-11-13T08:43:39Z",
-      "stars": 8857,
+      "stars": 9012,
       "score": 100,
       "verdict": "excellent",
       "skills": 1,
@@ -49,7 +49,7 @@
         "avgBytes": 12121,
         "lean": 1,
         "licensed": 1,
-        "staleDays": 10
+        "staleDays": 11
       },
       "issueCount": 0
     },
@@ -75,7 +75,7 @@
         "avgBytes": 13075,
         "lean": 1,
         "licensed": 1,
-        "staleDays": 72
+        "staleDays": 73
       },
       "issueCount": 0
     },
@@ -87,7 +87,7 @@
       "forks": 168,
       "issues": 4,
       "pushedAt": "2026-11-10T06:19:59Z",
-      "stars": 2899,
+      "stars": 2903,
       "score": 100,
       "verdict": "excellent",
       "skills": 1,
@@ -101,7 +101,7 @@
         "avgBytes": 9257,
         "lean": 1,
         "licensed": 1,
-        "staleDays": 13
+        "staleDays": 14
       },
       "issueCount": 0
     },
@@ -111,9 +111,9 @@
       "license": "MIT",
       "description": "MCP server and Claude Code skill for Excalidraw — programmatic canvas toolkit to create, edit, and export diagrams via AI agents with real-time canvas sync.",
       "forks": 302,
-      "issues": 38,
+      "issues": 40,
       "pushedAt": "2026-11-10T10:59:29Z",
-      "stars": 2680,
+      "stars": 2684,
       "score": 100,
       "verdict": "excellent",
       "skills": 1,
@@ -127,7 +127,7 @@
         "avgBytes": 19144,
         "lean": 1,
         "licensed": 1,
-        "staleDays": 13
+        "staleDays": 14
       },
       "issueCount": 0
     },
@@ -139,7 +139,7 @@
       "forks": 124,
       "issues": 1,
       "pushedAt": "2026-03-18T03:35:25Z",
-      "stars": 2104,
+      "stars": 2133,
       "score": 100,
       "verdict": "excellent",
       "skills": 1,
@@ -153,7 +153,7 @@
         "avgBytes": 7965,
         "lean": 1,
         "licensed": 1,
-        "staleDays": 250
+        "staleDays": 251
       },
       "issueCount": 0
     },
@@ -161,23 +161,23 @@
       "id": "elementalsouls-claude-bughunter",
       "repo": "elementalsouls/Claude-BugHunter",
       "license": "MIT",
-      "description": "A Claude Code skill bundle for bug hunting and external red-team work - 82 skills, 15 slash commands, 681 disclosed-report patterns curated across 24 core vulnerability classes, plus enterprise identity + infrastructure attack matrices.",
-      "forks": 2077,
-      "issues": 10,
-      "pushedAt": "2026-11-23T15:45:22Z",
-      "stars": 19242,
+      "description": "A Claude Code skill bundle for bug hunting and external red-team work - 84 skills, 15 slash commands, 681 disclosed-report patterns curated across 24 core vulnerability classes, plus enterprise identity + infrastructure attack matrices.",
+      "forks": 2196,
+      "issues": 13,
+      "pushedAt": "2026-11-24T10:43:35Z",
+      "stars": 20998,
       "score": 95,
       "verdict": "excellent",
-      "skills": 83,
+      "skills": 84,
       "metrics": {
-        "total": 83,
+        "total": 84,
         "parseable": 1,
-        "described": 0.9759036144578314,
-        "triggers": 0.7108433734939759,
+        "described": 0.9761904761904762,
+        "triggers": 0.7142857142857143,
         "naming": 1,
         "unique": 1,
-        "avgBytes": 20192,
-        "lean": 0.9952,
+        "avgBytes": 20057,
+        "lean": 0.998575,
         "licensed": 1,
         "staleDays": 0
       },
@@ -188,10 +188,10 @@
       "repo": "chaseai-yt/claudex-loop",
       "license": "NOASSERTION",
       "description": "Claude Code skill: four-phase plan hardening (recon, interrogate, Codex adversarial review, cross-model build & inspection) — two AI models harden your plan before a line of code exists, then swap jobs to build it. Whoever built it never grades it.",
-      "forks": 398,
+      "forks": 403,
       "issues": 12,
       "pushedAt": "2026-10-14T17:20:17Z",
-      "stars": 3561,
+      "stars": 3578,
       "score": 95,
       "verdict": "excellent",
       "skills": 6,
@@ -205,7 +205,7 @@
         "avgBytes": 7097,
         "lean": 1,
         "licensed": 1,
-        "staleDays": 39
+        "staleDays": 40
       },
       "issueCount": 0
     },
@@ -214,10 +214,10 @@
       "repo": "tradermonty/claude-trading-skills",
       "license": "MIT",
       "description": "Claude Code skills for equity investors and traders — market analysis, technical charting, economic calendars, screeners, and trading strategy development.",
-      "forks": 1515,
-      "issues": 50,
-      "pushedAt": "2026-11-23T06:39:33Z",
-      "stars": 7953,
+      "forks": 1530,
+      "issues": 53,
+      "pushedAt": "2026-11-23T21:39:16Z",
+      "stars": 8244,
       "score": 94,
       "verdict": "excellent",
       "skills": 94,
@@ -240,10 +240,10 @@
       "repo": "OpenMontageInc/OpenMontage",
       "license": "AGPL-3.0",
       "description": "World's first open-source, agentic video production system. 12 production pipelines, 100+ tools, 700+ agent skill and production-knowledge files. Turn your AI coding assistant into a full video production studio.",
-      "forks": 11264,
-      "issues": 356,
+      "forks": 11323,
+      "issues": 357,
       "pushedAt": "2026-11-16T06:55:27Z",
-      "stars": 82643,
+      "stars": 83005,
       "score": 91,
       "verdict": "excellent",
       "skills": 141,
@@ -257,7 +257,7 @@
         "avgBytes": 8543,
         "lean": 1,
         "licensed": 1,
-        "staleDays": 7
+        "staleDays": 8
       },
       "issueCount": 55
     },
@@ -266,10 +266,10 @@
       "repo": "tt-a1i/archify",
       "license": "Apache-2.0",
       "description": "Turn any idea, plan, or codebase into a beautiful interactive diagram. An agent skill for Claude Code, Codex, and more.",
-      "forks": 6776,
-      "issues": 360,
-      "pushedAt": "2026-11-23T05:21:17Z",
-      "stars": 99036,
+      "forks": 6807,
+      "issues": 358,
+      "pushedAt": "2026-11-24T15:55:41Z",
+      "stars": 99433,
       "score": 90,
       "verdict": "excellent",
       "skills": 6,
@@ -293,9 +293,9 @@
       "license": "MIT",
       "description": "ASD-STE100 Simplified Technical English rules, repurposed as a Claude Code skill for rewriting ambiguous agent-facing English.",
       "forks": 396,
-      "issues": 1,
-      "pushedAt": "2026-11-20T00:13:23Z",
-      "stars": 6849,
+      "issues": 5,
+      "pushedAt": "2026-11-24T00:19:50Z",
+      "stars": 6882,
       "score": 90,
       "verdict": "excellent",
       "skills": 1,
@@ -309,7 +309,7 @@
         "avgBytes": 16572,
         "lean": 1,
         "licensed": 1,
-        "staleDays": 3
+        "staleDays": 0
       },
       "issueCount": 1
     },
@@ -318,10 +318,10 @@
       "repo": "elvarofficial/teardown",
       "license": "MIT",
       "description": "A Claude Code skill that turns any machine into a 3D simulator you can take apart",
-      "forks": 604,
+      "forks": 612,
       "issues": 10,
       "pushedAt": "2026-10-31T14:01:06Z",
-      "stars": 4071,
+      "stars": 4124,
       "score": 90,
       "verdict": "excellent",
       "skills": 1,
@@ -335,7 +335,7 @@
         "avgBytes": 11672,
         "lean": 1,
         "licensed": 1,
-        "staleDays": 23
+        "staleDays": 24
       },
       "issueCount": 1
     },
@@ -347,7 +347,7 @@
       "forks": 293,
       "issues": 2,
       "pushedAt": "2026-11-12T08:42:02Z",
-      "stars": 2741,
+      "stars": 2743,
       "score": 90,
       "verdict": "excellent",
       "skills": 1,
@@ -361,7 +361,7 @@
         "avgBytes": 3989,
         "lean": 1,
         "licensed": 1,
-        "staleDays": 11
+        "staleDays": 12
       },
       "issueCount": 1
     },
@@ -370,10 +370,10 @@
       "repo": "Leonxlnx/taste-skill",
       "license": "MIT",
       "description": "Agent skills that give coding agents taste: art direction, reference images and a browser check instead of generic AI pages",
-      "forks": 8080,
-      "issues": 20,
-      "pushedAt": "2026-11-22T20:10:07Z",
-      "stars": 120541,
+      "forks": 8122,
+      "issues": 24,
+      "pushedAt": "2026-11-24T14:57:45Z",
+      "stars": 121005,
       "score": 89,
       "verdict": "excellent",
       "skills": 1,
@@ -396,10 +396,10 @@
       "repo": "P4nda0s/reverse-skills",
       "license": "NONE",
       "description": "Reverse engineering skills for Claude Code | 逆向工程 Claude Code Skills 插件",
-      "forks": 303,
+      "forks": 304,
       "issues": 1,
       "pushedAt": "2026-05-06T12:46:29Z",
-      "stars": 2368,
+      "stars": 2372,
       "score": 89,
       "verdict": "excellent",
       "skills": 7,
@@ -413,7 +413,7 @@
         "avgBytes": 7833,
         "lean": 1,
         "licensed": 0,
-        "staleDays": 201
+        "staleDays": 202
       },
       "issueCount": 0
     },
@@ -422,10 +422,10 @@
       "repo": "wheresryan22/anatomy",
       "license": "MIT",
       "description": "An agent skill for creating detailed, interactive isometric illustrations of real-world machines and complex systems. Generates polished SVGs with optional WebGL shaders and 3D effects.",
-      "forks": 2451,
+      "forks": 2461,
       "issues": 78,
       "pushedAt": "2026-10-18T20:20:24Z",
-      "stars": 28865,
+      "stars": 29013,
       "score": 88,
       "verdict": "excellent",
       "skills": 1,
@@ -439,7 +439,7 @@
         "avgBytes": 33589,
         "lean": 0.660275,
         "licensed": 1,
-        "staleDays": 35
+        "staleDays": 36
       },
       "issueCount": 1
     },
@@ -451,7 +451,7 @@
       "forks": 407,
       "issues": 22,
       "pushedAt": "2026-10-10T11:04:24Z",
-      "stars": 3263,
+      "stars": 3267,
       "score": 87,
       "verdict": "excellent",
       "skills": 8,
@@ -465,7 +465,7 @@
         "avgBytes": 9025,
         "lean": 1,
         "licensed": 1,
-        "staleDays": 44
+        "staleDays": 45
       },
       "issueCount": 0
     },
@@ -474,10 +474,10 @@
       "repo": "cloudflare/security-audit-skill",
       "license": "MIT",
       "description": "A coding-agent skill for multi-phase security audits with independently verified, machine-readable findings",
-      "forks": 5219,
+      "forks": 5256,
       "issues": 142,
       "pushedAt": "2026-09-14T19:29:02Z",
-      "stars": 77431,
+      "stars": 77824,
       "score": 85,
       "verdict": "excellent",
       "skills": 1,
@@ -491,7 +491,7 @@
         "avgBytes": 22026,
         "lean": 0.94935,
         "licensed": 1,
-        "staleDays": 69
+        "staleDays": 70
       },
       "issueCount": 0
     },
@@ -503,7 +503,7 @@
       "forks": 577,
       "issues": 15,
       "pushedAt": "2026-03-30T18:26:09Z",
-      "stars": 5821,
+      "stars": 5823,
       "score": 85,
       "verdict": "excellent",
       "skills": 1,
@@ -517,7 +517,7 @@
         "avgBytes": 17701,
         "lean": 1,
         "licensed": 0,
-        "staleDays": 237
+        "staleDays": 238
       },
       "issueCount": 1
     },
@@ -526,10 +526,10 @@
       "repo": "aiwithremy/claude-skills-llm-council",
       "license": "NONE",
       "description": "LLM Council — a Claude Code skill that runs your decisions through 5 AI advisors with peer review",
-      "forks": 283,
+      "forks": 284,
       "issues": 5,
       "pushedAt": "2026-04-26T01:08:39Z",
-      "stars": 3247,
+      "stars": 3260,
       "score": 85,
       "verdict": "excellent",
       "skills": 1,
@@ -543,7 +543,7 @@
         "avgBytes": 15661,
         "lean": 1,
         "licensed": 0,
-        "staleDays": 211
+        "staleDays": 212
       },
       "issueCount": 1
     },
@@ -552,10 +552,10 @@
       "repo": "NiazMorshed2007/reanimate",
       "license": "MIT",
       "description": "A Claude Code skill that reverse-engineers any animation frame by frame, then proves the copy moves the same.",
-      "forks": 209,
+      "forks": 218,
       "issues": 9,
       "pushedAt": "2026-10-31T12:49:35Z",
-      "stars": 2357,
+      "stars": 2463,
       "score": 85,
       "verdict": "excellent",
       "skills": 1,
@@ -569,7 +569,7 @@
         "avgBytes": 10775,
         "lean": 1,
         "licensed": 1,
-        "staleDays": 23
+        "staleDays": 24
       },
       "issueCount": 0
     },
@@ -578,10 +578,10 @@
       "repo": "op7418/Humanizer-zh",
       "license": "MIT",
       "description": "Humanizer 的汉化版本，Claude Code Skills，旨在消除文本中 AI 生成的痕迹。",
-      "forks": 1448,
+      "forks": 1453,
       "issues": 35,
       "pushedAt": "2026-09-23T02:24:28Z",
-      "stars": 23633,
+      "stars": 23705,
       "score": 75,
       "verdict": "solid",
       "skills": 1,
@@ -595,7 +595,7 @@
         "avgBytes": 20527,
         "lean": 0.986825,
         "licensed": 1,
-        "staleDays": 61
+        "staleDays": 62
       },
       "issueCount": 1
     },
@@ -604,10 +604,10 @@
       "repo": "op7418/guizang-ppt-skill",
       "license": "AGPL-3.0",
       "description": "AI-agent Skill for generating polished HTML slide decks: editorial magazine and Swiss layouts, image prompts, social covers, and a WebGL/low-power presentation runtime.",
-      "forks": 2081,
+      "forks": 2086,
       "issues": 52,
       "pushedAt": "2026-10-30T12:45:28Z",
-      "stars": 30311,
+      "stars": 30363,
       "score": 72,
       "verdict": "solid",
       "skills": 1,
@@ -621,7 +621,7 @@
         "avgBytes": 44097,
         "lean": 0.397575,
         "licensed": 1,
-        "staleDays": 24
+        "staleDays": 25
       },
       "issueCount": 1
     },
@@ -630,10 +630,10 @@
       "repo": "NVIDIA/SkillSpector",
       "license": "Apache-2.0",
       "description": "Security scanner for AI agent skills. Detect vulnerabilities, malicious patterns, security risks, prompt injection, data exfiltration, and supply-chain risks in Claude Code, Codex, and MCP skills before you install them.",
-      "forks": 2440,
+      "forks": 2455,
       "issues": 160,
-      "pushedAt": "2026-11-22T18:53:50Z",
-      "stars": 27398,
+      "pushedAt": "2026-11-24T10:17:35Z",
+      "stars": 27512,
       "score": 60,
       "verdict": "usable, with gaps",
       "skills": 34,
